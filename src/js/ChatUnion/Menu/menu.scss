@@ -1,0 +1,32 @@
+.menu {
+    position: relative;
+    height: 60px;
+    background: #3a5795;
+    color: white;
+    padding: 10px;
+    line-height: 40px;
+
+    &__heading {
+        font-weight: 300;
+        display: inline;
+    }
+
+    &__button {
+        background: none;
+        color: #fff;
+        float: right;
+        height: 40px;
+        cursor: pointer;
+        outline: none;
+        border-radius: 5px;
+        border: 1px solid #fff;
+
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        &:active {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+    }
+}

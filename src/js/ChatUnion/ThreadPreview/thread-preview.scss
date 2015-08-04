@@ -1,0 +1,36 @@
+.thread-preview {
+    display: block;
+    padding: 5px;
+    height: 60px;
+
+    &.active {
+        background-color: #6d84b4;
+        color: white;
+    }
+
+    &__img {
+        height: 40px;
+        width: 40px;
+        position: absolute;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+    &__name {
+        position: absolute;
+        display: block;
+        height: 60px;
+        top: 5px;
+        left: 60px;
+        width: calc(100% - 60px);
+        text-overflow: ellipsis;
+    }
+
+    &__last-message {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 100%;
+        display: block;
+    }
+}

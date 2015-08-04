@@ -1,0 +1,34 @@
+.chat-pane {
+    display: block;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    padding: 10px;
+    overflow: scroll;
+    width: calc(100% - 280px);
+    left: 280px;
+    border-left: 1px solid #ccc;
+
+    &__img {
+        border-radius: 50%;
+        height: 40px;
+        width: 40px;
+        position: absolute;
+    }
+
+    &__messages {
+        display: block;
+        left: 50px;
+
+    }
+
+    &__username {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    &__message {
+        display: block;
+        margin-bottom: 10px;
+    }
+}
