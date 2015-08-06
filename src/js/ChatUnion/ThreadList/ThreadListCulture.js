@@ -31,21 +31,18 @@ var ThreadsListCulture = React.createClass({
   onUpdate: function(params) {
 
     // deep clone threads
-    var threads = this.state.threads.slice(0),
-        index = 0;
+    var threads = this.state.threads.slice(0);
 
     // find and replace thread messages
     threads.map(function(thread, i) {
       params.data.map(function(data) {
         if(thread.id == data.thread.id) {
           thread.updateMessages(data.thread.messages);
-          index = i;
+          // move updated thread on top of threads
+          threads.unshift(threads.splice(i, 1)[0]);
         }
       });
     });
-
-    // move updated thread on top of threads
-    threads.unshift(threads.splice(index, 1)[0]);
 
     // set new state
     this.setState({
