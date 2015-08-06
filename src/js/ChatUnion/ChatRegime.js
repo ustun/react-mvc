@@ -61,6 +61,7 @@ ChatRegime.prototype.onUpdate = function(err, data) {
   data.forEach(function(d, i) {
     var correspondingThread = this.getThreadById(d.thread.id);
     correspondingThread.messages.push(d.thread.messages.slice(correspondingThread.messages.length));
+    correspondingThread.unread = d.thread.id != this.activeThread.id;
   }, this);
 
   this.emit(this.EventType.UPDATE, {data: data});
@@ -68,8 +69,16 @@ ChatRegime.prototype.onUpdate = function(err, data) {
   this.setupUpdates_();
 };
 
+ChatRegime.prototype.getUnreadCount = function() {
+  return this.threads.filter(function(thread) {
+    return thread.unread;
+  }).length;
+};
+
 ChatRegime.prototype.setActive = function(thread) {
   this.activeThread = thread;
+  this.activeThread.unread = false;
+
   this.emit(this.EventType.SET_ACTIVE_THREAD);
 };
 

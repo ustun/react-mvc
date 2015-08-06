@@ -32,13 +32,14 @@ var ThreadPreviewCulture = React.createClass({
   updateThread: function() {
     this.setState({
       active: this.rep.active,
-      lastMessage: this.rep.lastMessage
+      lastMessage: this.rep.lastMessage,
+      unread: this.rep.thread.unread
     })
   },
 
   render: function() {
     return (
-        <div className={cx('thread-preview', {'active': this.state.active})} onClick={this.setActive}>
+        <div className={cx('thread-preview', {'active': this.state.active}, {'unread': this.state.unread})} onClick={this.setActive}>
           <img className="thread-preview__img" src={this.state.user.picture.thumbnail} />
           <span className="thread-preview__name">
             <strong>{this.state.user.getFullName()}</strong>
