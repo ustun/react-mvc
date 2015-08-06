@@ -1,5 +1,6 @@
 var React = require('react'),
-    MenuRep = require('./MenuRep');
+    MenuRep = require('./MenuRep'),
+    Popover = require('../ThreadsPopover/ThreadsPopoverCulture');
 
 var MenuCulture = React.createClass({
 
@@ -14,21 +15,31 @@ var MenuCulture = React.createClass({
     this.rep.on(this.rep.EventType.UPDATE, this.onUpdate);
   },
 
+  componentWillUnmount: function() {
+    this.rep.off(this.rep.EventType.UPDATE, this.onUpdate);
+  },
+
   onUpdate: function() {
     this.setState({
       count: this.rep.unreadCount
     })
   },
 
+  togglePopover: function () {
+    this.refs.popover.toggle();
+  },
+
   render: function() {
     return (
         <div className="menu">
           <h1 className="menu__heading">Chat</h1>
-          <button className="menu__button">
+          <button className="menu__button"
+                  onClick={this.togglePopover}>
             <span>
               Threads {this.state.count}
             </span>
           </button>
+          <Popover ref="popover"/>
         </div>
     );
   }

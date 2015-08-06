@@ -1,5 +1,5 @@
 var util = require('util'),
-    Representative = require('../../veiux/Representative'),
+    Representative = require('../../vieux/Representative'),
     ChatRegime = require('../ChatRegime');
 
 var MotherPaneRep = function() {

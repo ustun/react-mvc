@@ -1,0 +1,18 @@
+.threads-popover {
+  position: absolute;
+  right: 0px;
+  top: 60px;
+  height: 400px;
+  width: 280px;
+  display: block;
+  background: white;
+  z-index: 3;
+  -webkit-transform: translateX(100%);
+  -webkit-transition: 0.3s;
+  border-left: 1px solid #aaa;
+  border-bottom: 1px solid #aaa;
+
+  &.visible {
+    -webkit-transform: translateX(0%);
+  }
+}

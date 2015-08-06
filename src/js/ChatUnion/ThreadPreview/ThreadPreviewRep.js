@@ -1,4 +1,4 @@
-var Representative = require('../../veiux/Representative'),
+var Representative = require('../../vieux/Representative'),
     ChatRegime = require('../ChatRegime'),
     util = require('util');
 

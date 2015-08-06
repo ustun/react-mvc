@@ -4,14 +4,4 @@
     background: white;
     width: 100%;
     bottom: 0;
-
-    &__users-list {
-        width: 280px;
-        height: 100%;
-        display: block;
-        position: absolute;
-        top: 0;
-        padding: 10px;
-        overflow: auto;
-    }
 }

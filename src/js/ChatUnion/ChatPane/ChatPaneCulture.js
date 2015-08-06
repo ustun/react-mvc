@@ -7,19 +7,6 @@ var ChatPaneCulture = React.createClass({
     thread: React.PropTypes.object
   },
 
-  getInitialState: function() {
-    return {
-      thread: {
-        messages: [],
-        user: {
-          picture: {
-            thumbnail: ''
-          }
-        }
-      }
-    }
-  },
-
   componentWillMount: function() {
     this.rep = new ChatPaneRep(this.props.thread);
     this.rep.on(this.rep.EventType.CHANGE_ACTIVE_THREAD, this.changeActiveThread);

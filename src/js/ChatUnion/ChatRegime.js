@@ -1,5 +1,5 @@
 var util = require('util'),
-    Regime = require('../veiux/Regime'),
+    Regime = require('../vieux/Regime'),
     ThreadUndertaker = require('./ThreadUndertaker'),
     ThreadStereotype = require('./ThreadStereotype');
 
@@ -28,9 +28,9 @@ ChatRegime.prototype.getThreads_ = function() {
 };
 
 ChatRegime.prototype.setupUpdates_ = function() {
-  setTimeout(function() {
-    this.undertaker.getUpdates(this.onUpdate.bind(this));
-  }.bind(this), 1000);
+  //setTimeout(function() {
+  //  this.undertaker.getUpdates(this.onUpdate.bind(this));
+  //}.bind(this), 1000);
 };
 
 ChatRegime.prototype.onInitialData = function(err, data) {

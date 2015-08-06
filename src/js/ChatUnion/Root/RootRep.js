@@ -1,4 +1,4 @@
-var Representative = require('../../veiux/Representative'),
+var Representative = require('../../vieux/Representative'),
     util = require('util');
 
 var RootRep = function() {
