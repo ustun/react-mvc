@@ -5,7 +5,7 @@ This project implements an example application with Vieux architecture.
 ## Install
 
 ```
-$ git clone --recursive git@github.com:vieuxjs/example-chat-react.git
+$ git clone git@github.com:vieuxjs/example-chat-react.git
 $ cd example-chat-react
 $ npm install
 ```
