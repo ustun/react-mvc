@@ -16,6 +16,7 @@ util.inherits(ChatPaneRep, Representative);
 
 ChatPaneRep.prototype.onSetActiveThread = function() {
   this.thread = ChatRegime.activeThread;
+  this.user = this.thread.user;
 
   this.emit(this.EventType.CHANGE_ACTIVE_THREAD);
 };

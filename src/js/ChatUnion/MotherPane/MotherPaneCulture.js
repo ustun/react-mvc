@@ -56,7 +56,8 @@ var MotherPaneCulture = React.createClass({
     });
 
     var chatPane = this.rep.activeThread ?
-                   <ChatPane thread={this.rep.activeThread} /> :
+                   <ChatPane thread={this.rep.activeThread}
+                             owner={this.rep.owner}/> :
                    '';
 
     return (

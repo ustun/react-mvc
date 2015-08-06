@@ -14,21 +14,55 @@
         height: 40px;
         width: 40px;
         position: absolute;
+
+        &--entry-img {
+            position: absolute;
+            top: 20px;
+            left: 10px;
+        }
     }
 
     &__messages {
+        position: absolute;
         display: block;
-        left: 50px;
-
+        left: 60px;
+        right: 0;
+        top: 35px;
+        bottom: 100px;
+        overflow: auto;
     }
 
     &__username {
         display: block;
+        position: absolute;
+        left: 60px;
         margin-bottom: 10px;
     }
 
     &__message {
         display: block;
         margin-bottom: 10px;
+    }
+
+    &__entry {
+        position: absolute;
+        display: block;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #efefef;
+        border-top: 1px solid #ddd;
+    }
+
+    &__entry-reply {
+        display: block;
+        margin: 10px;
+        border: 1px solid #aaa;
+        padding: 10px;
+        background: #fff;
+        margin-left: 60px;
+        right: 0;
+        height: 60px;
+        overflow: auto;
     }
 }

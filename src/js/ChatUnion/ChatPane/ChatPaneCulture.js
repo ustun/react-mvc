@@ -27,7 +27,8 @@ var ChatPaneCulture = React.createClass({
 
     this.setState({
       thread: this.props.thread,
-      user: this.props.thread.user
+      user: this.props.thread.user,
+      owner: this.props.owner
     })
   },
 
@@ -52,11 +53,15 @@ var ChatPaneCulture = React.createClass({
     return (
         <div className="chat-pane">
           <img className="chat-pane__img" src={this.state.user.picture.thumbnail}/>
+          <div className="chat-pane__username">
+            <strong>{this.state.user.getFullName()}</strong>
+          </div>
           <div className="chat-pane__messages">
-            <div className="chat-pane__username">
-              <strong>{this.state.user.getFullName()}</strong>
-            </div>
-            {messages}
+              {messages}
+          </div>
+          <div className="chat-pane__entry">
+            <img className="chat-pane__img chat-pane__img--entry-img" src={this.state.owner.picture.thumbnail}/>
+            <div className="chat-pane__entry-reply">This demo is for demonstrating unread threads synchronisation, so we left message typing out for the sake of brevity.</div>
           </div>
         </div>
     );

@@ -14,6 +14,7 @@ util.inherits(MotherPaneRep, Representative);
 MotherPaneRep.prototype.onInitialData = function() {
   this.activeThread = ChatRegime.activeThread;
   this.threads = ChatRegime.threads;
+  this.owner = ChatRegime.owner;
 
   this.threads.some(function(thread) {
     if (thread.user.username == this.activeThread.user.username)

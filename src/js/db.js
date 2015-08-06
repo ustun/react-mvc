@@ -1004,6 +1004,37 @@ db.threads = db.threads.map(function (thread) {
   return thread;
 });
 
+var owner = {
+  gender: "female",
+  name: {
+    title: "miss",
+    first: "ana",
+    last: "garnier"
+  },
+  location: {
+    street: "3206 boulevard de balmont",
+    city: "vitry-sur-seine",
+    state: "alpes-maritimes",
+    zip: 98343
+  },
+  email: "ana.garnier@example.com",
+  username: "reddog185",
+  password: "secure",
+  salt: "jwNyQ4TG",
+  md5: "e2f4b9098b0c4f6b0908e66e590f3b15",
+  sha1: "b9f029fd3e890b393013b271804ea176ff3c9dae",
+  sha256: "72532e6bea29be4408f448d9eca5781d44372e15e219aa33af267590945a67f1",
+  registered: 1362279457,
+  dob: 1271022321,
+  phone: "04-75-09-99-12",
+  cell: "06-99-42-16-31",
+  INSEE: "2100406109776 32",
+  picture: {
+    large: "https://randomuser.me/api/portraits/women/82.jpg",
+    medium: "https://randomuser.me/api/portraits/med/women/82.jpg",
+    thumbnail: "https://randomuser.me/api/portraits/thumb/women/82.jpg"
+  }
+};
 
 setInterval(randomUpdate, 2000);
 
@@ -1035,5 +1066,6 @@ function getRandomMessages() {
 
 module.exports = {
   db: db,
-  updates: updates
+  updates: updates,
+  owner: owner
 };

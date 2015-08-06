@@ -12,6 +12,7 @@ var ChatRegime = function() {
 
   this.getThreads_();
   this.setupUpdates_();
+  this.getOwner_();
 };
 
 util.inherits(ChatRegime, Regime);
@@ -82,6 +83,11 @@ ChatRegime.prototype.setActive = function(thread) {
   this.emit(this.EventType.SET_ACTIVE_THREAD);
 };
 
+ChatRegime.prototype.getOwner_ = function() {
+  this.undertaker.getOwner(function(err, owner) {
+    this.owner = owner;
+  }.bind(this));
+};
 
 ChatRegime.prototype.EventType = {
   INITIAL_DATA: 'initial data',
