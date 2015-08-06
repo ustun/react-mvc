@@ -36,7 +36,7 @@ var MenuCulture = React.createClass({
           <button className="menu__button"
                   onClick={this.togglePopover}>
             <span>
-              Threads {this.state.count}
+              Threads ({this.state.count})
             </span>
           </button>
           <Popover ref="popover"/>

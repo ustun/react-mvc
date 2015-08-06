@@ -25,6 +25,11 @@ var ThreadPreviewCulture = React.createClass({
     this.rep.off(this.rep.EventType.UPDATE, this.updateThread);
   },
 
+  shouldComponentUpdate: function(nextProps, nextState) {
+      return this.state.unread != nextState.unread ||
+             this.state.active != nextState.active
+  },
+
   setActive: function() {
     this.rep.setActive();
   },
@@ -39,11 +44,16 @@ var ThreadPreviewCulture = React.createClass({
 
   render: function() {
     return (
-        <div className={cx('thread-preview', {'active': this.state.active}, {'unread': this.state.unread})} onClick={this.setActive}>
+        <div className={cx('thread-preview', {'active': this.state.active}, {'unread': this.state.unread})}
+             onClick={this.setActive}>
           <img className="thread-preview__img" src={this.state.user.picture.thumbnail} />
           <span className="thread-preview__name">
-            <strong>{this.state.user.getFullName()}</strong>
-            <span className="thread-preview__last-message">{this.state.lastMessage}</span>
+            <strong>
+              {this.state.user.getFullName()}
+            </strong>
+            <span className="thread-preview__last-message">
+              {this.state.lastMessage}
+            </span>
           </span>
         </div>
     );
