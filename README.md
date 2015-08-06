@@ -1,4 +1,4 @@
-# vchat example with React.
+# Vieux example with ReactJS
 
 This project implements an example application with Vieux architecture.
 
