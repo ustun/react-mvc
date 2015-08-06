@@ -1,4 +1,4 @@
-var EventEmitter = require('events').EventEmitter,
+var EventEmitter = require('eventemitter3'),
     util = require('util');
 
 var Regime = function() {

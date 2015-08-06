@@ -10,7 +10,8 @@ var ThreadPreviewCulture = React.createClass({
 
   componentWillMount: function() {
     this.rep = new ThreadPreviewRep(this.props.thread);
-    this.rep.on(this.rep.EventType.UPDATE_ACTIVE_THREAD, this.updateActive);
+    this.rep.on(this.rep.EventType.UPDATE_ACTIVE_THREAD, this.updateThread);
+    this.rep.on(this.rep.EventType.UPDATE, this.updateThread);
 
     this.setState({
       active: this.rep.active,
@@ -20,16 +21,18 @@ var ThreadPreviewCulture = React.createClass({
   },
 
   componentWillUnmount: function() {
-    this.rep.removeListener(this.rep.EventType.UPDATE_ACTIVE_THREAD, this.onInit);
+    this.rep.off(this.rep.EventType.UPDATE_ACTIVE_THREAD, this.updateThread);
+    this.rep.off(this.rep.EventType.UPDATE, this.updateThread);
   },
 
   setActive: function() {
     this.rep.setActive();
   },
 
-  updateActive: function() {
+  updateThread: function() {
     this.setState({
-      active: this.rep.active
+      active: this.rep.active,
+      lastMessage: this.rep.lastMessage
     })
   },
 

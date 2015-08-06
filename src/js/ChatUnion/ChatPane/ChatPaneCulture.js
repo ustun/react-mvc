@@ -22,7 +22,8 @@ var ChatPaneCulture = React.createClass({
 
   componentWillMount: function() {
     this.rep = new ChatPaneRep(this.props.thread);
-    this.rep.on(this.rep.EventType.CHANGE_ACTIVE_THREAD, this.onInit);
+    this.rep.on(this.rep.EventType.CHANGE_ACTIVE_THREAD, this.changeActiveThread);
+    this.rep.on(this.rep.EventType.UPDATE, this.changeActiveThread);
 
     this.setState({
       thread: this.props.thread,
@@ -31,10 +32,11 @@ var ChatPaneCulture = React.createClass({
   },
 
   componentWillUnmount: function() {
-    this.rep.removeListener(this.rep.EventType.CHANGE_ACTIVE_THREAD, this.onInit);
+    this.rep.off(this.rep.EventType.CHANGE_ACTIVE_THREAD, this.changeActiveThread);
+    this.rep.off(this.rep.EventType.UPDATE, this.changeActiveThread);
   },
 
-  onInit: function() {
+  changeActiveThread: function() {
     this.setState({
       thread: this.rep.thread,
       user: this.rep.thread.user

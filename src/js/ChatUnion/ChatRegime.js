@@ -1,16 +1,17 @@
 var util = require('util'),
     Regime = require('../veiux/Regime'),
-    ThreadsUndertaker = require('./ThreadsUndertaker'),
+    ThreadUndertaker = require('./ThreadUndertaker'),
     ThreadStereotype = require('./ThreadStereotype');
 
 var ChatRegime = function() {
   Regime.call(this);
 
-  this.undertaker = ThreadsUndertaker;
+  this.undertaker = ThreadUndertaker;
   this.threads = [];
   this.activeThread = null;
 
   this.getThreads_();
+  this.setupUpdates_();
 };
 
 util.inherits(ChatRegime, Regime);
@@ -25,10 +26,15 @@ ChatRegime.prototype.getThreads_ = function() {
   this.undertaker.getThreads(this.onInitialData.bind(this));
 };
 
+ChatRegime.prototype.setupUpdates_ = function() {
+  setTimeout(function() {
+    this.undertaker.getUpdates(this.onUpdate.bind(this));
+  }.bind(this), 1000);
+};
 
 ChatRegime.prototype.onInitialData = function(err, data) {
 
-  if (err)
+  if(err)
     return;
 
   this.threads = data.threads.map(function(thread) {
@@ -41,16 +47,37 @@ ChatRegime.prototype.onInitialData = function(err, data) {
 };
 
 
+ChatRegime.prototype.getThreadById = function(id) {
+  return this.threads.filter(function(thread) {
+    return thread.id == id;
+  })[0];
+};
+
+
+ChatRegime.prototype.onUpdate = function(err, data) {
+  if(err || !data.length)
+    return this.setupUpdates_();
+
+  data.forEach(function(d, i) {
+    var correspondingThread = this.getThreadById(d.thread.id);
+    correspondingThread.messages.push(d.thread.messages.slice(correspondingThread.messages.length));
+  }, this);
+
+  this.emit(this.EventType.UPDATE, {data: data});
+
+  this.setupUpdates_();
+};
+
 ChatRegime.prototype.setActive = function(thread) {
   this.activeThread = thread;
-
   this.emit(this.EventType.SET_ACTIVE_THREAD);
 };
 
 
 ChatRegime.prototype.EventType = {
   INITIAL_DATA: 'initial data',
-  SET_ACTIVE_THREAD: 'set active thread'
+  SET_ACTIVE_THREAD: 'set active thread',
+  UPDATE: 'update'
 };
 
 module.exports = new ChatRegime();
