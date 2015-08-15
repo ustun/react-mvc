@@ -73,7 +73,7 @@ var ChatBoxCulture = React.createClass({
                  onClick={this.toggle} />
           </div>
           <div className="chat-box__content">
-            <ChatPaneCulture thread={this.state.thread} focus={this.state.active || this.state.unread || this.state.minimized}/>
+            <ChatPaneCulture thread={this.state.thread} focus={this.state.active}/>
           </div>
         </div>
     );

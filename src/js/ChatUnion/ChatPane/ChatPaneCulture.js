@@ -36,12 +36,12 @@ var ChatPaneCulture = React.createClass({
       React.findDOMNode(this.refs.input).focus();
   },
 
-  componentDidUpdate: function(prevProps, prevState) {
-    if(this.props.focus) {
-      var thread = React.findDOMNode(this.refs.thread);
-      thread.scrollTop = thread.scrollHeight;
+  componentDidUpdate: function() {
+    var thread = React.findDOMNode(this.refs.thread);
+    thread.scrollTop = thread.scrollHeight;
+
+    if(this.props.focus)
       React.findDOMNode(this.refs.input).focus();
-    }
   },
 
   onNewMessage: function() {
