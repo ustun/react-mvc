@@ -7,35 +7,26 @@ var ChatPaneRep = function(thread) {
 
   this.thread = thread;
   this.user = this.thread.user;
+  this.owner = ChatRegime.owner;
 
-  ChatRegime.on(ChatRegime.EventType.SET_ACTIVE_THREAD, this.onSetActiveThread.bind(this));
-  ChatRegime.on(ChatRegime.EventType.UPDATE, this.onUpdate.bind(this));
+  ChatRegime.on(ChatRegime.EventType.NEW_MESSAGE, this.onNewMessage.bind(this));
 };
 
 util.inherits(ChatPaneRep, Representative);
 
-ChatPaneRep.prototype.onSetActiveThread = function() {
-  this.thread = ChatRegime.activeThread;
-  this.user = this.thread.user;
-
-  this.emit(this.EventType.CHANGE_ACTIVE_THREAD);
-};
-
-ChatPaneRep.prototype.onUpdate = function(e) {
+ChatPaneRep.prototype.onNewMessage = function(e) {
   e.data.some(function(data) {
-
-    if(data.thread.id != this.thread.id)
+    if (this.thread.id != data.thread.id)
       return;
 
-    this.emit(this.EventType.UPDATE, e);
+    this.emit(e);
 
     return true;
   }, this);
 };
 
 ChatPaneRep.prototype.EventType = {
-  CHANGE_ACTIVE_THREAD: 'change active thread',
-  UPDATE: 'update'
+  NEW_MESSAGE: 'new message'
 };
 
 module.exports = ChatPaneRep;

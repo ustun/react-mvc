@@ -1,7 +1,17 @@
 .mother-pane {
+  position: absolute;
+  top: 60px;
+  background: white;
+  width: 100%;
+  bottom: 0;
+
+  .chat-pane {
+    display: block;
     position: absolute;
-    top: 60px;
-    background: white;
-    width: 100%;
-    bottom: 0;
+    height: 100%;
+    top: 0;
+    width: calc(100% - 280px);
+    left: 280px;
+    border-left: 1px solid #ccc;
+  }
 }

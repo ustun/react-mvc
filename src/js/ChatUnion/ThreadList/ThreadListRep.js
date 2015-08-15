@@ -6,7 +6,7 @@ var ThreadListRep = function() {
   Representative.call(this);
 
   ChatRegime.on(ChatRegime.EventType.INITIAL_DATA, this.onInitialData.bind(this));
-  ChatRegime.on(ChatRegime.EventType.UPDATE, this.onUpdate.bind(this));
+  ChatRegime.on(ChatRegime.EventType.NEW_MESSAGE, this.onNewMessage.bind(this));
 };
 
 util.inherits(ThreadListRep, Representative);
@@ -16,8 +16,8 @@ ThreadListRep.prototype.onInitialData = function() {
   this.emit(this.EventType.INITIAL_DATA);
 };
 
-ThreadListRep.prototype.onUpdate = function(e) {
-  this.emit(this.EventType.UPDATE, e);
+ThreadListRep.prototype.onNewMessage = function(e) {
+  this.emit(this.EventType.NEW_MESSAGE, e);
 };
 
 /**
@@ -25,7 +25,7 @@ ThreadListRep.prototype.onUpdate = function(e) {
  */
 ThreadListRep.prototype.EventType = {
   INITIAL_DATA: 'initial data',
-  UPDATE: 'update'
+  NEW_MESSAGE: 'new message'
 };
 
 module.exports = ThreadListRep;

@@ -13,29 +13,31 @@ var MotherPaneCulture = React.createClass({
 
   componentWillMount: function() {
     this.rep = new MotherPaneRep();
-    this.rep.on(this.rep.EventType.INITIAL_DATA, this.onInit);
+    this.rep.on(this.rep.EventType.UPDATE, this.onUpdate);
   },
 
   componentWillUnmount: function() {
-    this.rep.off(this.rep.EventType.INITIAL_DATA, this.onInit);
+    this.rep.off(this.rep.EventType.UPDATE, this.onUpdate);
   },
 
-  onInit: function() {
+  onUpdate: function() {
     this.setState({
-      threads: this.rep.threads
+      threads: this.rep.getThreads()
     })
+  },
+
+  onClickThreadPreview: function(thread) {
+    this.rep.setActive(thread);
   },
 
   render: function() {
 
-    var chatPane = this.rep.activeThread ?
-                   <ChatPane thread={this.rep.activeThread}
-                             owner={this.rep.owner}/> :
-                   '';
+    var activeThread = this.rep.getActiveThread();
+    var chatPane = activeThread ? <ChatPane thread={activeThread}/> : '';
 
     return (
         <div className="mother-pane">
-          <ThreadList />
+          <ThreadList onClickThreadPreview={this.onClickThreadPreview}/>
           {chatPane}
         </div>
     );

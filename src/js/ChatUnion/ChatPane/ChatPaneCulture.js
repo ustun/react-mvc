@@ -9,26 +9,46 @@ var ChatPaneCulture = React.createClass({
 
   componentWillMount: function() {
     this.rep = new ChatPaneRep(this.props.thread);
-    this.rep.on(this.rep.EventType.CHANGE_ACTIVE_THREAD, this.changeActiveThread);
-    this.rep.on(this.rep.EventType.UPDATE, this.changeActiveThread);
+    this.rep.on(this.rep.EventType.NEW_MESSAGE, this.onNewMessage);
 
     this.setState({
       thread: this.props.thread,
       user: this.props.thread.user,
-      owner: this.props.owner
+      owner: this.rep.owner
     })
   },
 
   componentWillUnmount: function() {
-    this.rep.off(this.rep.EventType.CHANGE_ACTIVE_THREAD, this.changeActiveThread);
-    this.rep.off(this.rep.EventType.UPDATE, this.changeActiveThread);
+    this.rep.off(this.rep.EventType.NEW_MESSAGE, this.onNewMessage);
   },
 
-  changeActiveThread: function() {
+  componentWillReceiveProps: function(nextProps) {
+    this.setState({
+      thread: nextProps.thread
+    })
+  },
+
+  componentDidMount: function() {
+    var thread = React.findDOMNode(this.refs.thread);
+    thread.scrollTop = thread.scrollHeight;
+
+    if(this.props.focus)
+      React.findDOMNode(this.refs.input).focus();
+  },
+
+  componentDidUpdate: function(prevProps, prevState) {
+    if(this.props.focus) {
+      var thread = React.findDOMNode(this.refs.thread);
+      thread.scrollTop = thread.scrollHeight;
+      React.findDOMNode(this.refs.input).focus();
+    }
+  },
+
+  onNewMessage: function() {
     this.setState({
       thread: this.rep.thread,
       user: this.rep.thread.user
-    })
+    });
   },
 
   render: function() {
@@ -39,16 +59,18 @@ var ChatPaneCulture = React.createClass({
 
     return (
         <div className="chat-pane">
-          <img className="chat-pane__img" src={this.state.user.picture.thumbnail}/>
-          <div className="chat-pane__username">
-            <strong>{this.state.user.getFullName()}</strong>
-          </div>
-          <div className="chat-pane__messages">
-              {messages}
+          <div ref="thread" className="chat-pane__thread">
+            <img className="chat-pane__img" src={this.state.user.picture.thumbnail}/>
+            <div className="chat-pane__username">
+              <strong>{this.state.user.getFullName()}</strong>
+            </div>
+            <div className="chat-pane__messages">
+                {messages}
+            </div>
           </div>
           <div className="chat-pane__entry">
             <img className="chat-pane__img chat-pane__img--entry-img" src={this.state.owner.picture.thumbnail}/>
-            <div className="chat-pane__entry-reply">This demo is for demonstrating unread threads synchronisation, so we left message typing out for the sake of brevity.</div>
+            <input ref="input" className="chat-pane__entry-reply" type="text" placeholder="This demo is for demonstrating unread threads synchronisation, so we left message typing out for the sake of brevity." />
           </div>
         </div>
     );

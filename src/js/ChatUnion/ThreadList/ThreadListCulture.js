@@ -5,6 +5,10 @@ var React = require('react'),
 
 var ThreadsListCulture = React.createClass({
 
+  propTypes: {
+    onClickThreadPreview: React.PropTypes.func.isRequired
+  },
+
   getInitialState: function() {
     return {
       threads: []
@@ -14,12 +18,12 @@ var ThreadsListCulture = React.createClass({
   componentWillMount: function() {
     this.rep = new ThreadListRep();
     this.rep.on(this.rep.EventType.INITIAL_DATA, this.onInit);
-    this.rep.on(this.rep.EventType.UPDATE, this.onUpdate);
+    this.rep.on(this.rep.EventType.NEW_MESSAGE, this.onNewMessage);
   },
 
   componentWillUnmount: function() {
     this.rep.off(this.rep.EventType.INITIAL_DATA, this.onInit);
-    this.rep.off(this.rep.EventType.UPDATE, this.onUpdate);
+    this.rep.off(this.rep.EventType.NEW_MESSAGE, this.onNewMessage);
   },
 
   onInit: function() {
@@ -28,7 +32,7 @@ var ThreadsListCulture = React.createClass({
     })
   },
 
-  onUpdate: function(params) {
+  onNewMessage: function(params) {
 
     // deep clone threads
     var threads = this.state.threads.slice(0);
@@ -53,8 +57,10 @@ var ThreadsListCulture = React.createClass({
   render: function() {
 
     var threads = this.state.threads.map(function(thread) {
-      return <ThreadPreview key={thread.id} thread={thread} />
-    });
+      return <ThreadPreview key={thread.id}
+                            thread={thread}
+                            onClickThreadPreview={this.props.onClickThreadPreview}/>
+    }.bind(this));
 
     return (
         <div className="thread-list">

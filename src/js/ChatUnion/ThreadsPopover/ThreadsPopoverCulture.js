@@ -22,10 +22,14 @@ var ThreadsPopoverCulture = React.createClass({
     })
   },
 
+  onClickThreadPreview: function(thread) {
+    this.rep.addChatBox(thread);
+  },
+
   render: function() {
     return (
         <div className={cx('threads-popover', {'visible': this.state.visible})}>
-          <ThreadList />
+          <ThreadList onClickThreadPreview={this.onClickThreadPreview}/>
         </div>
     );
   }

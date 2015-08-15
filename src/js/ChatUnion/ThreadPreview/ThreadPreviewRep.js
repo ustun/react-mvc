@@ -7,18 +7,17 @@ var ThreadPreviewRep = function(thread) {
   this.thread = thread;
   this.user = thread.user;
   this.lastMessage = thread.messages.slice(-1);
-  this.active = ChatRegime.activeThread == thread;
 
   // TODO: This Culture should be a subculture and its Parent should listen this event instead
   ChatRegime.on(ChatRegime.EventType.SET_ACTIVE_THREAD, this.onSetActiveThread.bind(this));
-  ChatRegime.on(ChatRegime.EventType.UPDATE, this.onUpdate.bind(this));
+  ChatRegime.on(ChatRegime.EventType.NEW_MESSAGE, this.onUpdate.bind(this));
+  ChatRegime.on(ChatRegime.EventType.SET_ACTIVE_CHAT_BOX, this.onSetActiveChatBox.bind(this));
 };
 
 util.inherits(ThreadPreviewRep, Representative);
 
-
-ThreadPreviewRep.prototype.setActive = function() {
-  ChatRegime.setActive(this.thread);
+ThreadPreviewRep.prototype.getActive = function() {
+  return this.thread == ChatRegime.activeThread;
 };
 
 ThreadPreviewRep.prototype.onUpdate = function(e) {
@@ -28,26 +27,24 @@ ThreadPreviewRep.prototype.onUpdate = function(e) {
 
     this.lastMessage = this.thread.messages.slice(-1);
 
-    this.emit(this.EventType.UPDATE);
+    this.emit(this.EventType.NEW_MESSAGE);
 
     return true;
   }, this);
 };
 
 ThreadPreviewRep.prototype.onSetActiveThread = function() {
-  var newActive = ChatRegime.activeThread == this.thread;
-
-  if (this.active != newActive) {
-    this.active = newActive;
-
-    this.emit(this.EventType.UPDATE_ACTIVE_THREAD);
-  }
+  this.emit(this.EventType.SET_ACTIVE_THREAD);
 };
 
+ThreadPreviewRep.prototype.onSetActiveChatBox = function() {
+  this.emit(this.EventType.SET_ACTIVE_CHAT_BOX);
+};
 
 ThreadPreviewRep.prototype.EventType = {
-  UPDATE_ACTIVE_THREAD: 'update active thread',
-  UPDATE: 'update'
+  SET_ACTIVE_THREAD: 'set active thread',
+  NEW_MESSAGE: 'new message',
+  SET_ACTIVE_CHAT_BOX: 'set active chat box'
 };
 
 

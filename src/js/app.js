@@ -1,5 +1,6 @@
 var React = require('react/addons'),
-    Root = require('./ChatUnion/Root/RootCulture');
+    Root = require('./ChatUnion/Root/RootCulture'),
+    ChatRegime = require('./ChatUnion/ChatRegime');
 
 // Debuging tools
 var debug = require('debug');
@@ -7,7 +8,8 @@ var debug = require('debug');
 global.debug = debug;
 global.log = debug('LOG:');
 global.errorlog = debug('ERROR:');
-global.routelog = debug('ROUTE:');
+
+ChatRegime.init();
 
 React.render(
     <Root />,

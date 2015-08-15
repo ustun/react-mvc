@@ -5,38 +5,29 @@ var util = require('util'),
 var MotherPaneRep = function() {
   Representative.call(this);
 
-  ChatRegime.on(ChatRegime.EventType.INITIAL_DATA, this.onInitialData.bind(this));
-  ChatRegime.on(ChatRegime.EventType.UPDATE, this.onUpdate.bind(this));
+  ChatRegime.on(ChatRegime.EventType.INITIAL_DATA, this.onUpdate.bind(this));
+  ChatRegime.on(ChatRegime.EventType.SET_ACTIVE_THREAD, this.onUpdate.bind(this));
 };
 
 util.inherits(MotherPaneRep, Representative);
 
-MotherPaneRep.prototype.onInitialData = function() {
-  this.activeThread = ChatRegime.activeThread;
-  this.threads = ChatRegime.threads;
-  this.owner = ChatRegime.owner;
-
-  this.threads.some(function(thread) {
-    if (thread.user.username == this.activeThread.user.username)
-      thread.active = true;
-  }.bind(this));
-
-  this.emit(this.EventType.INITIAL_DATA);
+MotherPaneRep.prototype.getThreads = function() {
+  return ChatRegime.threads;
 };
 
-MotherPaneRep.prototype.onUpdate = function(e) {
-  e.data.some(function(data) {
-    if (data.thread.user.username == this.activeThread.user.username) {
-      this.activeThread.active = true;
-    }
-  }.bind(this));
-
-  this.emit(this.EventType.UPDATE, e);
+MotherPaneRep.prototype.getActiveThread = function() {
+  return ChatRegime.activeThread;
 };
 
+MotherPaneRep.prototype.onUpdate = function() {
+  this.emit(this.EventType.UPDATE);
+};
+
+MotherPaneRep.prototype.setActive = function(thread) {
+  ChatRegime.setActive(thread);
+};
 
 MotherPaneRep.prototype.EventType = {
-  INITIAL_DATA: 'initial data',
   UPDATE: 'update'
 };
 
