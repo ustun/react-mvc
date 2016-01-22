@@ -1,9 +1,9 @@
 var React = require('react'),
     cx = require('classnames'),
     ChatBoxRep = require('./ChatBoxViewModel'),
-    ChatPaneview = require('../ChatPane/ChatPaneview');
+    ChatPaneView = require('../ChatPane/ChatPaneView');
 
-var ChatBoxview = React.createClass({
+var ChatBoxView = React.createClass({
 
   getInitialState: function() {
     return {
@@ -73,11 +73,11 @@ var ChatBoxview = React.createClass({
                  onClick={this.toggle} />
           </div>
           <div className="chat-box__content">
-            <ChatPaneview thread={this.state.thread} focus={this.state.active}/>
+            <ChatPaneView thread={this.state.thread} focus={this.state.active}/>
           </div>
         </div>
     );
   }
 });
 
-module.exports = ChatBoxview;
+module.exports = ChatBoxView;

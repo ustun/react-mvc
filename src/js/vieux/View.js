@@ -1,1 +1,1 @@
-// view is React in this example.
+// View is React in this example.

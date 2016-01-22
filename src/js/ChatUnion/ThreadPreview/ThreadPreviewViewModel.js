@@ -1,26 +1,26 @@
 var Representative = require('../../ReactMVC/Representative'),
-    Chatmodel = require('../Chatmodel'),
+    ChatModel = require('../ChatModel'),
     util = require('util');
 
-var ThreadPreviewRep = function(thread) {
+var ThreadPreViewRep = function(thread) {
   Representative.call(this);
   this.thread = thread;
   this.user = thread.user;
   this.lastMessage = thread.messages.slice(-1);
 
-  // TODO: This view should be a subview and its Parent should listen this event instead
-  Chatmodel.on(Chatmodel.EventType.SET_ACTIVE_THREAD, this.onSetActiveThread.bind(this));
-  Chatmodel.on(Chatmodel.EventType.NEW_MESSAGE, this.onUpdate.bind(this));
-  Chatmodel.on(Chatmodel.EventType.SET_ACTIVE_CHAT_BOX, this.onSetActiveChatBox.bind(this));
+  // TODO: This View should be a subView and its Parent should listen this event instead
+  ChatModel.on(ChatModel.EventType.SET_ACTIVE_THREAD, this.onSetActiveThread.bind(this));
+  ChatModel.on(ChatModel.EventType.NEW_MESSAGE, this.onUpdate.bind(this));
+  ChatModel.on(ChatModel.EventType.SET_ACTIVE_CHAT_BOX, this.onSetActiveChatBox.bind(this));
 };
 
-util.inherits(ThreadPreviewRep, Representative);
+util.inherits(ThreadPreViewRep, Representative);
 
-ThreadPreviewRep.prototype.getActive = function() {
-  return this.thread == Chatmodel.activeThread;
+ThreadPreViewRep.prototype.getActive = function() {
+  return this.thread == ChatModel.activeThread;
 };
 
-ThreadPreviewRep.prototype.onUpdate = function(e) {
+ThreadPreViewRep.prototype.onUpdate = function(e) {
   e.data.some(function(data) {
     if(data.thread.id != this.thread.id)
       return;
@@ -33,19 +33,19 @@ ThreadPreviewRep.prototype.onUpdate = function(e) {
   }, this);
 };
 
-ThreadPreviewRep.prototype.onSetActiveThread = function() {
+ThreadPreViewRep.prototype.onSetActiveThread = function() {
   this.emit(this.EventType.SET_ACTIVE_THREAD);
 };
 
-ThreadPreviewRep.prototype.onSetActiveChatBox = function() {
+ThreadPreViewRep.prototype.onSetActiveChatBox = function() {
   this.emit(this.EventType.SET_ACTIVE_CHAT_BOX);
 };
 
-ThreadPreviewRep.prototype.EventType = {
+ThreadPreViewRep.prototype.EventType = {
   SET_ACTIVE_THREAD: 'set active thread',
   NEW_MESSAGE: 'new message',
   SET_ACTIVE_CHAT_BOX: 'set active chat box'
 };
 
 
-module.exports = ThreadPreviewRep;
+module.exports = ThreadPreViewRep;

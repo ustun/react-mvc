@@ -1,15 +1,15 @@
 var React = require('react'),
     cx = require('classnames'),
-    ThreadPreviewRep = require('./ThreadPreviewRep');
+    ThreadPreViewRep = require('./ThreadPreViewRep');
 
-var ThreadPreviewview = React.createClass({
+var ThreadPreViewView = React.createClass({
 
   propTypes: {
     thread: React.PropTypes.object
   },
 
   componentWillMount: function() {
-    this.rep = new ThreadPreviewRep(this.props.thread);
+    this.rep = new ThreadPreViewRep(this.props.thread);
     this.rep.on(this.rep.EventType.SET_ACTIVE_THREAD, this.updateThread);
     this.rep.on(this.rep.EventType.NEW_MESSAGE, this.updateThread);
     this.rep.on(this.rep.EventType.SET_ACTIVE_CHAT_BOX, this.updateThread);
@@ -33,7 +33,7 @@ var ThreadPreviewview = React.createClass({
   },
 
   setActive: function() {
-    this.props.onClickThreadPreview(this.rep.thread);
+    this.props.onClickThreadPreView(this.rep.thread);
   },
 
   updateThread: function() {
@@ -46,14 +46,14 @@ var ThreadPreviewview = React.createClass({
 
   render: function() {
     return (
-        <div className={cx('thread-preview', {'active': this.state.active}, {'unread': this.state.unread})}
+        <div className={cx('thread-preView', {'active': this.state.active}, {'unread': this.state.unread})}
              onClick={this.setActive}>
-          <img className="thread-preview__img" src={this.state.user.picture.thumbnail} />
-          <span className="thread-preview__name">
+          <img className="thread-preView__img" src={this.state.user.picture.thumbnail} />
+          <span className="thread-preView__name">
             <strong>
               {this.state.user.getFullName()}
             </strong>
-            <span className="thread-preview__last-message">
+            <span className="thread-preView__last-message">
               {this.state.lastMessage}
             </span>
           </span>
@@ -62,4 +62,4 @@ var ThreadPreviewview = React.createClass({
   }
 });
 
-module.exports = ThreadPreviewview;
+module.exports = ThreadPreViewView;

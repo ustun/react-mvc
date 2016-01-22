@@ -273,7 +273,7 @@ var db = {
           last: 'patterson'
         },
         location: {
-          street: '5922 lakeview st',
+          street: '5922 lakeView st',
           city: 'woodbridge',
           state: 'minnesota',
           zip: 88725

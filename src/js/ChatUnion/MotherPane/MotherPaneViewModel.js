@@ -1,22 +1,22 @@
 var util = require('util'),
     Representative = require('../../ReactMVC/Representative'),
-    Chatmodel = require('../Chatmodel');
+    ChatModel = require('../ChatModel');
 
 var MotherPaneRep = function() {
   Representative.call(this);
 
-  Chatmodel.on(Chatmodel.EventType.INITIAL_DATA, this.onUpdate.bind(this));
-  Chatmodel.on(Chatmodel.EventType.SET_ACTIVE_THREAD, this.onUpdate.bind(this));
+  ChatModel.on(ChatModel.EventType.INITIAL_DATA, this.onUpdate.bind(this));
+  ChatModel.on(ChatModel.EventType.SET_ACTIVE_THREAD, this.onUpdate.bind(this));
 };
 
 util.inherits(MotherPaneRep, Representative);
 
 MotherPaneRep.prototype.getThreads = function() {
-  return Chatmodel.threads;
+  return ChatModel.threads;
 };
 
 MotherPaneRep.prototype.getActiveThread = function() {
-  return Chatmodel.activeThread;
+  return ChatModel.activeThread;
 };
 
 MotherPaneRep.prototype.onUpdate = function() {
@@ -24,7 +24,7 @@ MotherPaneRep.prototype.onUpdate = function() {
 };
 
 MotherPaneRep.prototype.setActive = function(thread) {
-  Chatmodel.setActive(thread);
+  ChatModel.setActive(thread);
 };
 
 MotherPaneRep.prototype.EventType = {

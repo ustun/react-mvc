@@ -1,12 +1,12 @@
 var React = require('react'),
     ThreadListRep = require('./ThreadListRep'),
-    ThreadPreview = require('../ThreadPreview/ThreadPreviewview'),
-    ChatPane = require('../ChatPane/ChatPaneview');
+    ThreadPreView = require('../ThreadPreView/ThreadPreViewView'),
+    ChatPane = require('../ChatPane/ChatPaneView');
 
-var ThreadsListview = React.createClass({
+var ThreadsListView = React.createClass({
 
   propTypes: {
-    onClickThreadPreview: React.PropTypes.func.isRequired
+    onClickThreadPreView: React.PropTypes.func.isRequired
   },
 
   getInitialState: function() {
@@ -57,9 +57,9 @@ var ThreadsListview = React.createClass({
   render: function() {
 
     var threads = this.state.threads.map(function(thread) {
-      return <ThreadPreview key={thread.id}
+      return <ThreadPreView key={thread.id}
                             thread={thread}
-                            onClickThreadPreview={this.props.onClickThreadPreview}/>
+                            onClickThreadPreView={this.props.onClickThreadPreView}/>
     }.bind(this));
 
     return (
@@ -70,4 +70,4 @@ var ThreadsListview = React.createClass({
   }
 });
 
-module.exports = ThreadsListview;
+module.exports = ThreadsListView;

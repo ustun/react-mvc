@@ -1,10 +1,10 @@
 var util = require('util'),
-    model = require('../ReactMVC/model'),
+    Model = require('../ReactMVC/Model'),
     Threadservice = require('./Threadservice'),
     Threadentity = require('./Threadentity');
 
-var Chatmodel = function() {
-  model.call(this);
+var ChatModel = function() {
+  Model.call(this);
 
   this.service = Threadservice;
   this.threads = [];
@@ -16,9 +16,9 @@ var Chatmodel = function() {
   this.owner = null;
 };
 
-util.inherits(Chatmodel, model);
+util.inherits(ChatModel, Model);
 
-Chatmodel.prototype.init = function() {
+ChatModel.prototype.init = function() {
   this.getThreads_();
   this.getOwner_();
 };
@@ -28,17 +28,17 @@ Chatmodel.prototype.init = function() {
  *
  * @private
  */
-Chatmodel.prototype.getThreads_ = function() {
+ChatModel.prototype.getThreads_ = function() {
   this.service.getThreads(this.onInitialData.bind(this));
 };
 
-Chatmodel.prototype.setupUpdates_ = function() {
+ChatModel.prototype.setupUpdates_ = function() {
   setTimeout(function() {
     this.service.getUpdates(this.onUpdate.bind(this));
   }.bind(this), 1000);
 };
 
-Chatmodel.prototype.onInitialData = function(err, data) {
+ChatModel.prototype.onInitialData = function(err, data) {
 
   if(err)
     return;
@@ -56,14 +56,14 @@ Chatmodel.prototype.onInitialData = function(err, data) {
 };
 
 
-Chatmodel.prototype.getThreadById = function(id) {
+ChatModel.prototype.getThreadById = function(id) {
   return this.threads.filter(function(thread) {
     return thread.id == id;
   })[0];
 };
 
 
-Chatmodel.prototype.onUpdate = function(err, data) {
+ChatModel.prototype.onUpdate = function(err, data) {
   if(err || !data.length)
     return this.setupUpdates_();
 
@@ -96,7 +96,7 @@ Chatmodel.prototype.onUpdate = function(err, data) {
   this.setupUpdates_();
 };
 
-Chatmodel.prototype.setActiveChatBox = function(thread) {
+ChatModel.prototype.setActiveChatBox = function(thread) {
   if(this.activeChatBox == thread)
     return;
 
@@ -108,7 +108,7 @@ Chatmodel.prototype.setActiveChatBox = function(thread) {
   this.emit(this.EventType.SET_ACTIVE_CHAT_BOX);
 };
 
-Chatmodel.prototype.addChatBox = function(thread) {
+ChatModel.prototype.addChatBox = function(thread) {
   if(this.chatBoxes.indexOf(thread) == -1)
     this.chatBoxes.push(thread);
 
@@ -117,7 +117,7 @@ Chatmodel.prototype.addChatBox = function(thread) {
   this.emit(this.EventType.ADD_CHAT_BOX, {thread: thread});
 };
 
-Chatmodel.prototype.removeChatBox = function(thread) {
+ChatModel.prototype.removeChatBox = function(thread) {
   var i = this.chatBoxes.indexOf(thread);
   if (i == -1)
     return;
@@ -128,13 +128,13 @@ Chatmodel.prototype.removeChatBox = function(thread) {
   this.emit(this.EventType.REMOVE_CHAT_BOX, {thread: thread});
 };
 
-Chatmodel.prototype.getUnreadCount = function() {
+ChatModel.prototype.getUnreadCount = function() {
   return this.threads.filter(function(thread) {
     return thread.unread;
   }).length;
 };
 
-Chatmodel.prototype.setActive = function(thread) {
+ChatModel.prototype.setActive = function(thread) {
   if(this.activeThread == thread)
     return;
 
@@ -144,13 +144,13 @@ Chatmodel.prototype.setActive = function(thread) {
   this.emit(this.EventType.SET_ACTIVE_THREAD);
 };
 
-Chatmodel.prototype.getOwner_ = function() {
+ChatModel.prototype.getOwner_ = function() {
   this.service.getOwner(function(err, owner) {
     this.owner = owner;
   }.bind(this));
 };
 
-Chatmodel.prototype.EventType = {
+ChatModel.prototype.EventType = {
   INITIAL_DATA: 'initial data',
   SET_ACTIVE_THREAD: 'set active thread',
   SET_ACTIVE_CHAT_BOX: 'set active chat box',
@@ -159,4 +159,4 @@ Chatmodel.prototype.EventType = {
   REMOVE_CHAT_BOX: 'remove chat box'
 };
 
-module.exports = new Chatmodel();
+module.exports = new ChatModel();

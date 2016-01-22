@@ -1,13 +1,13 @@
 var util = require('util'),
     Representative = require('../../ReactMVC/Representative'),
-    Chatmodel = require('../Chatmodel');
+    ChatModel = require('../ChatModel');
 
 
 var RootRep = function() {
   Representative.call(this);
 
-  Chatmodel.on(Chatmodel.EventType.ADD_CHAT_BOX, this.onAddChatbox.bind(this));
-  Chatmodel.on(Chatmodel.EventType.REMOVE_CHAT_BOX, this.onRemoveChatbox.bind(this));
+  ChatModel.on(ChatModel.EventType.ADD_CHAT_BOX, this.onAddChatbox.bind(this));
+  ChatModel.on(ChatModel.EventType.REMOVE_CHAT_BOX, this.onRemoveChatbox.bind(this));
 };
 
 util.inherits(RootRep, Representative);
@@ -21,11 +21,11 @@ RootRep.prototype.onRemoveChatbox = function(e) {
 };
 
 RootRep.prototype.getActive = function() {
-  return !!Chatmodel.activeChatBox;
+  return !!ChatModel.activeChatBox;
 };
 
 RootRep.prototype.deactivateChatBox = function() {
-  Chatmodel.setActiveChatBox(null);
+  ChatModel.setActiveChatBox(null);
 };
 
 RootRep.prototype.EventType = {

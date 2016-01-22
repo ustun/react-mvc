@@ -1,8 +1,8 @@
 var React = require('react'),
     MenuRep = require('./MenuRep'),
-    Popover = require('../ThreadsPopover/ThreadsPopoverview');
+    Popover = require('../ThreadsPopover/ThreadsPopoverView');
 
-var Menuview = React.createClass({
+var MenuView = React.createClass({
 
   getInitialState: function() {
     return {
@@ -45,4 +45,4 @@ var Menuview = React.createClass({
   }
 });
 
-module.exports = Menuview;
+module.exports = MenuView;

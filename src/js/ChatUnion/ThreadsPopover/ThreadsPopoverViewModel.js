@@ -1,6 +1,6 @@
 var Representative = require('../../ReactMVC/Representative'),
     util = require('util'),
-    Chatmodel = require('../Chatmodel');
+    ChatModel = require('../ChatModel');
 
 var ThreadsPopoverRep = function() {
   Representative.call(this);
@@ -18,7 +18,7 @@ ThreadsPopoverRep.prototype.toggle = function() {
  * @param {Threadentity} thread Thread to open a chat box for.
  */
 ThreadsPopoverRep.prototype.addChatBox = function(thread) {
-  Chatmodel.addChatBox(thread);
+  ChatModel.addChatBox(thread);
 };
 
 /**

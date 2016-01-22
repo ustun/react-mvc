@@ -1,9 +1,9 @@
 var React = require('react'),
     cx = require('classnames'),
     ThreadsPopoverRep = require('./ThreadsPopoverRep'),
-    ThreadList = require('../ThreadList/ThreadListview');
+    ThreadList = require('../ThreadList/ThreadListView');
 
-var ThreadsPopoverview = React.createClass({
+var ThreadsPopoverView = React.createClass({
 
   getInitialState: function() {
     return {
@@ -22,17 +22,17 @@ var ThreadsPopoverview = React.createClass({
     })
   },
 
-  onClickThreadPreview: function(thread) {
+  onClickThreadPreView: function(thread) {
     this.rep.addChatBox(thread);
   },
 
   render: function() {
     return (
         <div className={cx('threads-popover', {'visible': this.state.visible})}>
-          <ThreadList onClickThreadPreview={this.onClickThreadPreview}/>
+          <ThreadList onClickThreadPreView={this.onClickThreadPreView}/>
         </div>
     );
   }
 });
 
-module.exports = ThreadsPopoverview;
+module.exports = ThreadsPopoverView;

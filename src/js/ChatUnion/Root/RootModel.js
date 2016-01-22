@@ -1,10 +1,10 @@
 var React = require('react'),
     RootRep = require('./RootRep'),
-    Menu = require('../Menu/Menuview'),
-    MotherPane = require('../MotherPane/MotherPaneview'),
-    ChatBoxview = require('../ChatBox/ChatBoxview');
+    Menu = require('../Menu/MenuView'),
+    MotherPane = require('../MotherPane/MotherPaneView'),
+    ChatBoxView = require('../ChatBox/ChatBoxView');
 
-var Rootview = React.createClass({
+var RootView = React.createClass({
 
   getInitialState: function() {
     return {
@@ -57,7 +57,7 @@ var Rootview = React.createClass({
   render: function() {
 
     var chatBoxes = this.state.threads.map(function(thread) {
-      return <ChatBoxview ref={thread.id} key={thread.id} thread={thread} />
+      return <ChatBoxView ref={thread.id} key={thread.id} thread={thread} />
     });
 
     return (
@@ -70,4 +70,4 @@ var Rootview = React.createClass({
   }
 });
 
-module.exports = Rootview;
+module.exports = RootView;

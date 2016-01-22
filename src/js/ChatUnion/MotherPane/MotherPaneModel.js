@@ -1,9 +1,9 @@
 var React = require('react'),
     MotherPaneRep = require('./MotherPaneRep'),
-    ThreadList = require('../ThreadList/ThreadListview'),
-    ChatPane = require('../ChatPane/ChatPaneview');
+    ThreadList = require('../ThreadList/ThreadListView'),
+    ChatPane = require('../ChatPane/ChatPaneView');
 
-var MotherPaneview = React.createClass({
+var MotherPaneView = React.createClass({
 
   getInitialState: function() {
     return {
@@ -26,7 +26,7 @@ var MotherPaneview = React.createClass({
     })
   },
 
-  onClickThreadPreview: function(thread) {
+  onClickThreadPreView: function(thread) {
     this.rep.setActive(thread);
   },
 
@@ -37,11 +37,11 @@ var MotherPaneview = React.createClass({
 
     return (
         <div className="mother-pane">
-          <ThreadList onClickThreadPreview={this.onClickThreadPreview}/>
+          <ThreadList onClickThreadPreView={this.onClickThreadPreView}/>
           {chatPane}
         </div>
     );
   }
 });
 
-module.exports = MotherPaneview;
+module.exports = MotherPaneView;

@@ -1,21 +1,21 @@
 var Representative = require('../../ReactMVC/Representative'),
-    Chatmodel = require('../Chatmodel'),
+    ChatModel = require('../ChatModel'),
     util = require('util');
 
 var MenuRep = function() {
   Representative.call(this);
-  this.unreadCount = Chatmodel.getUnreadCount();
+  this.unreadCount = ChatModel.getUnreadCount();
 
-  Chatmodel.on(Chatmodel.EventType.NEW_MESSAGE, this.onUpdate.bind(this));
-  Chatmodel.on(Chatmodel.EventType.SET_ACTIVE_THREAD, this.onUpdate.bind(this));
-  Chatmodel.on(Chatmodel.EventType.SET_ACTIVE_CHAT_BOX, this.onUpdate.bind(this));
+  ChatModel.on(ChatModel.EventType.NEW_MESSAGE, this.onUpdate.bind(this));
+  ChatModel.on(ChatModel.EventType.SET_ACTIVE_THREAD, this.onUpdate.bind(this));
+  ChatModel.on(ChatModel.EventType.SET_ACTIVE_CHAT_BOX, this.onUpdate.bind(this));
 };
 
 util.inherits(MenuRep, Representative);
 
 
 MenuRep.prototype.onUpdate = function() {
-  this.unreadCount = Chatmodel.getUnreadCount();
+  this.unreadCount = ChatModel.getUnreadCount();
 
   this.emit(this.EventType.UPDATE);
 };

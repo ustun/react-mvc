@@ -1,7 +1,7 @@
 var React = require('react'),
     ChatPaneRep = require('./ChatPaneRep');
 
-var ChatPaneview = React.createClass({
+var ChatPaneView = React.createClass({
 
   propTypes: {
     thread: React.PropTypes.object
@@ -77,4 +77,4 @@ var ChatPaneview = React.createClass({
   }
 });
 
-module.exports = ChatPaneview;
+module.exports = ChatPaneView;
