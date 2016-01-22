@@ -1,37 +1,37 @@
 var util = require('util'),
-    Representative = require('../../ReactMVC/Representative'),
+    ViewModelresentative = require('../../ReactMVC/ViewModelresentative'),
     ChatModel = require('../ChatModel');
 
 
-var RootRep = function() {
-  Representative.call(this);
+var RootViewModel = function() {
+  ViewModelresentative.call(this);
 
   ChatModel.on(ChatModel.EventType.ADD_CHAT_BOX, this.onAddChatbox.bind(this));
   ChatModel.on(ChatModel.EventType.REMOVE_CHAT_BOX, this.onRemoveChatbox.bind(this));
 };
 
-util.inherits(RootRep, Representative);
+util.inherits(RootViewModel, ViewModelresentative);
 
-RootRep.prototype.onAddChatbox = function(e) {
+RootViewModel.prototype.onAddChatbox = function(e) {
   this.emit(this.EventType.ADD_CHAT_BOX, e);
 };
 
-RootRep.prototype.onRemoveChatbox = function(e) {
+RootViewModel.prototype.onRemoveChatbox = function(e) {
   this.emit(this.EventType.REMOVE_CHAT_BOX, e);
 };
 
-RootRep.prototype.getActive = function() {
+RootViewModel.prototype.getActive = function() {
   return !!ChatModel.activeChatBox;
 };
 
-RootRep.prototype.deactivateChatBox = function() {
+RootViewModel.prototype.deactivateChatBox = function() {
   ChatModel.setActiveChatBox(null);
 };
 
-RootRep.prototype.EventType = {
+RootViewModel.prototype.EventType = {
   ADD_CHAT_BOX: 'add chat box',
   REMOVE_CHAT_BOX: 'remove chat box',
   SET_ACTIVE_CHAT_BOX: 'set active chat box'
 };
 
-module.exports = RootRep;
+module.exports = RootViewModel;

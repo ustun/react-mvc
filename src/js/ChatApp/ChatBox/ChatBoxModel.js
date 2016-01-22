@@ -1,6 +1,6 @@
 var React = require('react'),
     cx = require('classnames'),
-    ChatBoxRep = require('./ChatBoxViewModel'),
+    ChatBoxViewModel = require('./ChatBoxViewModel'),
     ChatPaneView = require('../ChatPane/ChatPaneView');
 
 var ChatBoxView = React.createClass({
@@ -12,7 +12,7 @@ var ChatBoxView = React.createClass({
   },
 
   componentWillMount: function() {
-    this.rep = new ChatBoxRep(this.props.thread);
+    this.rep = new ChatBoxViewModel(this.props.thread);
     this.rep.on(this.rep.EventType.UPDATE, this.onUpdate);
 
     this.setState({

@@ -1,5 +1,5 @@
 var React = require('react'),
-    ChatPaneRep = require('./ChatPaneRep');
+    ChatPaneViewModel = require('./ChatPaneViewModel');
 
 var ChatPaneView = React.createClass({
 
@@ -8,7 +8,7 @@ var ChatPaneView = React.createClass({
   },
 
   componentWillMount: function() {
-    this.rep = new ChatPaneRep(this.props.thread);
+    this.rep = new ChatPaneViewModel(this.props.thread);
     this.rep.on(this.rep.EventType.NEW_MESSAGE, this.onNewMessage);
 
     this.setState({

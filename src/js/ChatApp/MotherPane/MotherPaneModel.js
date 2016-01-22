@@ -1,5 +1,5 @@
 var React = require('react'),
-    MotherPaneRep = require('./MotherPaneRep'),
+    MotherPaneViewModel = require('./MotherPaneViewModel'),
     ThreadList = require('../ThreadList/ThreadListView'),
     ChatPane = require('../ChatPane/ChatPaneView');
 
@@ -12,7 +12,7 @@ var MotherPaneView = React.createClass({
   },
 
   componentWillMount: function() {
-    this.rep = new MotherPaneRep();
+    this.rep = new MotherPaneViewModel();
     this.rep.on(this.rep.EventType.UPDATE, this.onUpdate);
   },
 

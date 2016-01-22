@@ -1,6 +1,6 @@
 var React = require('react'),
     cx = require('classnames'),
-    ThreadsPopoverRep = require('./ThreadsPopoverRep'),
+    ThreadsPopoverViewModel = require('./ThreadsPopoverViewModel'),
     ThreadList = require('../ThreadList/ThreadListView');
 
 var ThreadsPopoverView = React.createClass({
@@ -12,7 +12,7 @@ var ThreadsPopoverView = React.createClass({
   },
 
   componentWillMount: function() {
-    this.rep = new ThreadsPopoverRep();
+    this.rep = new ThreadsPopoverViewModel();
   },
 
   toggle: function() {

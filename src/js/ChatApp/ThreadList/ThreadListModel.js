@@ -1,5 +1,5 @@
 var React = require('react'),
-    ThreadListRep = require('./ThreadListRep'),
+    ThreadListViewModel = require('./ThreadListViewModel'),
     ThreadPreView = require('../ThreadPreView/ThreadPreViewView'),
     ChatPane = require('../ChatPane/ChatPaneView');
 
@@ -16,7 +16,7 @@ var ThreadsListView = React.createClass({
   },
 
   componentWillMount: function() {
-    this.rep = new ThreadListRep();
+    this.rep = new ThreadListViewModel();
     this.rep.on(this.rep.EventType.INITIAL_DATA, this.onInit);
     this.rep.on(this.rep.EventType.NEW_MESSAGE, this.onNewMessage);
   },

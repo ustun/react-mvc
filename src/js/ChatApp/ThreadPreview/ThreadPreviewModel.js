@@ -1,6 +1,6 @@
 var React = require('react'),
     cx = require('classnames'),
-    ThreadPreViewRep = require('./ThreadPreViewRep');
+    ThreadPreViewViewModel = require('./ThreadPreViewViewModel');
 
 var ThreadPreViewView = React.createClass({
 
@@ -9,7 +9,7 @@ var ThreadPreViewView = React.createClass({
   },
 
   componentWillMount: function() {
-    this.rep = new ThreadPreViewRep(this.props.thread);
+    this.rep = new ThreadPreViewViewModel(this.props.thread);
     this.rep.on(this.rep.EventType.SET_ACTIVE_THREAD, this.updateThread);
     this.rep.on(this.rep.EventType.NEW_MESSAGE, this.updateThread);
     this.rep.on(this.rep.EventType.SET_ACTIVE_CHAT_BOX, this.updateThread);

@@ -1,32 +1,32 @@
-var Representative = require('../../ReactMVC/Representative'),
+var ViewModelresentative = require('../../ReactMVC/ViewModelresentative'),
     util = require('util'),
     ChatModel = require('../ChatModel');
 
-var ThreadsPopoverRep = function() {
-  Representative.call(this);
+var ThreadsPopoverViewModel = function() {
+  ViewModelresentative.call(this);
 
   this.visible = false;
 };
 
-util.inherits(ThreadsPopoverRep, Representative);
+util.inherits(ThreadsPopoverViewModel, ViewModelresentative);
 
-ThreadsPopoverRep.prototype.toggle = function() {
+ThreadsPopoverViewModel.prototype.toggle = function() {
   this.visible = !this.visible;
 };
 
 /**
  * @param {Threadentity} thread Thread to open a chat box for.
  */
-ThreadsPopoverRep.prototype.addChatBox = function(thread) {
+ThreadsPopoverViewModel.prototype.addChatBox = function(thread) {
   ChatModel.addChatBox(thread);
 };
 
 /**
  * @enum {string}
  */
-ThreadsPopoverRep.prototype.EventType = {
+ThreadsPopoverViewModel.prototype.EventType = {
   INITIAL_DATA: 'initial data',
   UPDATE: 'update'
 };
 
-module.exports = ThreadsPopoverRep;
+module.exports = ThreadsPopoverViewModel;

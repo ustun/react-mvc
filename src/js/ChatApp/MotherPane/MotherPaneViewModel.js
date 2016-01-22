@@ -1,34 +1,34 @@
 var util = require('util'),
-    Representative = require('../../ReactMVC/Representative'),
+    ViewModelresentative = require('../../ReactMVC/ViewModelresentative'),
     ChatModel = require('../ChatModel');
 
-var MotherPaneRep = function() {
-  Representative.call(this);
+var MotherPaneViewModel = function() {
+  ViewModelresentative.call(this);
 
   ChatModel.on(ChatModel.EventType.INITIAL_DATA, this.onUpdate.bind(this));
   ChatModel.on(ChatModel.EventType.SET_ACTIVE_THREAD, this.onUpdate.bind(this));
 };
 
-util.inherits(MotherPaneRep, Representative);
+util.inherits(MotherPaneViewModel, ViewModelresentative);
 
-MotherPaneRep.prototype.getThreads = function() {
+MotherPaneViewModel.prototype.getThreads = function() {
   return ChatModel.threads;
 };
 
-MotherPaneRep.prototype.getActiveThread = function() {
+MotherPaneViewModel.prototype.getActiveThread = function() {
   return ChatModel.activeThread;
 };
 
-MotherPaneRep.prototype.onUpdate = function() {
+MotherPaneViewModel.prototype.onUpdate = function() {
   this.emit(this.EventType.UPDATE);
 };
 
-MotherPaneRep.prototype.setActive = function(thread) {
+MotherPaneViewModel.prototype.setActive = function(thread) {
   ChatModel.setActive(thread);
 };
 
-MotherPaneRep.prototype.EventType = {
+MotherPaneViewModel.prototype.EventType = {
   UPDATE: 'update'
 };
 
-module.exports = MotherPaneRep;
+module.exports = MotherPaneViewModel;

@@ -1,9 +1,9 @@
-var Representative = require('../../ReactMVC/Representative'),
+var ViewModelresentative = require('../../ReactMVC/ViewModelresentative'),
     ChatModel = require('../ChatModel'),
     util = require('util');
 
-var ThreadPreViewRep = function(thread) {
-  Representative.call(this);
+var ThreadPreViewViewModel = function(thread) {
+  ViewModelresentative.call(this);
   this.thread = thread;
   this.user = thread.user;
   this.lastMessage = thread.messages.slice(-1);
@@ -14,13 +14,13 @@ var ThreadPreViewRep = function(thread) {
   ChatModel.on(ChatModel.EventType.SET_ACTIVE_CHAT_BOX, this.onSetActiveChatBox.bind(this));
 };
 
-util.inherits(ThreadPreViewRep, Representative);
+util.inherits(ThreadPreViewViewModel, ViewModelresentative);
 
-ThreadPreViewRep.prototype.getActive = function() {
+ThreadPreViewViewModel.prototype.getActive = function() {
   return this.thread == ChatModel.activeThread;
 };
 
-ThreadPreViewRep.prototype.onUpdate = function(e) {
+ThreadPreViewViewModel.prototype.onUpdate = function(e) {
   e.data.some(function(data) {
     if(data.thread.id != this.thread.id)
       return;
@@ -33,19 +33,19 @@ ThreadPreViewRep.prototype.onUpdate = function(e) {
   }, this);
 };
 
-ThreadPreViewRep.prototype.onSetActiveThread = function() {
+ThreadPreViewViewModel.prototype.onSetActiveThread = function() {
   this.emit(this.EventType.SET_ACTIVE_THREAD);
 };
 
-ThreadPreViewRep.prototype.onSetActiveChatBox = function() {
+ThreadPreViewViewModel.prototype.onSetActiveChatBox = function() {
   this.emit(this.EventType.SET_ACTIVE_CHAT_BOX);
 };
 
-ThreadPreViewRep.prototype.EventType = {
+ThreadPreViewViewModel.prototype.EventType = {
   SET_ACTIVE_THREAD: 'set active thread',
   NEW_MESSAGE: 'new message',
   SET_ACTIVE_CHAT_BOX: 'set active chat box'
 };
 
 
-module.exports = ThreadPreViewRep;
+module.exports = ThreadPreViewViewModel;

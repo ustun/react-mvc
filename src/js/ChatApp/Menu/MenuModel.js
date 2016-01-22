@@ -1,5 +1,5 @@
 var React = require('react'),
-    MenuRep = require('./MenuRep'),
+    MenuViewModel = require('./MenuViewModel'),
     Popover = require('../ThreadsPopover/ThreadsPopoverView');
 
 var MenuView = React.createClass({
@@ -11,7 +11,7 @@ var MenuView = React.createClass({
   },
 
   componentWillMount: function() {
-    this.rep = new MenuRep();
+    this.rep = new MenuViewModel();
     this.rep.on(this.rep.EventType.UPDATE, this.onUpdate);
   },
 

@@ -1,5 +1,5 @@
 var React = require('react'),
-    RootRep = require('./RootRep'),
+    RootViewModel = require('./RootViewModel'),
     Menu = require('../Menu/MenuView'),
     MotherPane = require('../MotherPane/MotherPaneView'),
     ChatBoxView = require('../ChatBox/ChatBoxView');
@@ -13,7 +13,7 @@ var RootView = React.createClass({
   },
 
   componentWillMount: function() {
-    this.rep = new RootRep();
+    this.rep = new RootViewModel();
     this.rep.on(this.rep.EventType.ADD_CHAT_BOX, this.onAddChatBox);
     this.rep.on(this.rep.EventType.REMOVE_CHAT_BOX, this.onRemoveChatBox);
   },

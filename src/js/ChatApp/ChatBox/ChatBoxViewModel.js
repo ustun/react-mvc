@@ -1,16 +1,16 @@
 var util = require('util'),
-    Representative = require('../../ReactMVC/Representative'),
+    ViewModelresentative = require('../../ReactMVC/ViewModelresentative'),
     ChatModel = require('../ChatModel');
 
 /**
  *
  * @constructor
- * @extends {Representative}
+ * @extends {ViewModelresentative}
  *
  * @param {Threadentity} thread Threadentity instance
  */
-var ChatBoxRep = function(thread) {
-  Representative.call(this);
+var ChatBoxViewModel = function(thread) {
+  ViewModelresentative.call(this);
 
   this.thread = thread;
   this.user = this.thread.user;
@@ -20,40 +20,40 @@ var ChatBoxRep = function(thread) {
   ChatModel.on(ChatModel.EventType.SET_ACTIVE_CHAT_BOX, this.onUpdate.bind(this));
 };
 
-util.inherits(ChatBoxRep, Representative);
+util.inherits(ChatBoxViewModel, ViewModelresentative);
 
 
-ChatBoxRep.prototype.setActive = function () {
+ChatBoxViewModel.prototype.setActive = function () {
   ChatModel.setActiveChatBox(this.thread);
 };
 
 
-ChatBoxRep.prototype.close = function () {
+ChatBoxViewModel.prototype.close = function () {
   ChatModel.removeChatBox(this.thread);
 };
 
 
-ChatBoxRep.prototype.minimize = function () {
+ChatBoxViewModel.prototype.minimize = function () {
   this.minimized = !this.minimized;
 
   ChatModel.setActiveChatBox(this.minimized ? null : this.thread);
 };
 
 
-ChatBoxRep.prototype.getActive = function () {
+ChatBoxViewModel.prototype.getActive = function () {
   return this.thread == ChatModel.activeChatBox;
 };
 
 
-ChatBoxRep.prototype.onUpdate = function () {
+ChatBoxViewModel.prototype.onUpdate = function () {
   this.emit(this.EventType.UPDATE);
 };
 
 
 
-ChatBoxRep.prototype.EventType = {
+ChatBoxViewModel.prototype.EventType = {
   UPDATE: 'update'
 };
 
 
-module.exports = ChatBoxRep;
+module.exports = ChatBoxViewModel;
