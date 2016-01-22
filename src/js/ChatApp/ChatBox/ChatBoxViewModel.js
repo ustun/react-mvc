@@ -7,7 +7,7 @@ var util = require('util'),
  * @constructor
  * @extends {ViewModel}
  *
- * @param {Threadentity} thread Threadentity instance
+ * @param {ThreadEntity} thread ThreadEntity instance
  */
 var ChatBoxViewModel = function(thread) {
   ViewModel.call(this);

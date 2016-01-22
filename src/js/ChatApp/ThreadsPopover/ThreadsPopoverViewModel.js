@@ -15,7 +15,7 @@ ThreadsPopoverViewModel.prototype.toggle = function() {
 };
 
 /**
- * @param {Threadentity} thread Thread to open a chat box for.
+ * @param {ThreadEntity} thread Thread to open a chat box for.
  */
 ThreadsPopoverViewModel.prototype.addChatBox = function(thread) {
   ChatModel.addChatBox(thread);

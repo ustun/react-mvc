@@ -1,7 +1,7 @@
 var util = require('util'),
     Model = require('../ReactMVC/Model'),
     Threadservice = require('./Threadservice'),
-    Threadentity = require('./Threadentity');
+    ThreadEntity = require('./ThreadEntity');
 
 var ChatModel = function() {
   Model.call(this);
@@ -44,7 +44,7 @@ ChatModel.prototype.onInitialData = function(err, data) {
     return;
 
   this.threads = data.threads.map(function(thread) {
-    return new Threadentity(thread);
+    return new ThreadEntity(thread);
   });
 
   this.activeThread = this.threads[0];
