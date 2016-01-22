@@ -35,3 +35,12 @@ When you are satisfied with development and want to make a production build in o
 The live-reloading watch server can also be activated for these kind of builds via `gulp serve`.
 
 Happy coding!
+
+
+## Credits
+
+All the code was originally written in "Vieux" MVC architecture by [Tarik Akyol](https://github.com/tarikakyol).
+
+Converted to standard MVC naming by [Ustun Ozgur](https://github.com/ustun).
+
+For the original info about vieux architecture, see http://vieux.io/
