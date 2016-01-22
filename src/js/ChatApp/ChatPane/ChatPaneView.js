@@ -8,18 +8,18 @@ var ChatPaneView = React.createClass({
   },
 
   componentWillMount: function() {
-    this.rep = new ChatPaneViewModel(this.props.thread);
-    this.rep.on(this.rep.EventType.NEW_MESSAGE, this.onNewMessage);
+    this.viewModel = new ChatPaneViewModel(this.props.thread);
+    this.viewModel.on(this.viewModel.EventType.NEW_MESSAGE, this.onNewMessage);
 
     this.setState({
       thread: this.props.thread,
       user: this.props.thread.user,
-      owner: this.rep.owner
+      owner: this.viewModel.owner
     })
   },
 
   componentWillUnmount: function() {
-    this.rep.off(this.rep.EventType.NEW_MESSAGE, this.onNewMessage);
+    this.viewModel.off(this.viewModel.EventType.NEW_MESSAGE, this.onNewMessage);
   },
 
   componentWillReceiveProps: function(nextProps) {
@@ -46,8 +46,8 @@ var ChatPaneView = React.createClass({
 
   onNewMessage: function() {
     this.setState({
-      thread: this.rep.thread,
-      user: this.rep.thread.user
+      thread: this.viewModel.thread,
+      user: this.viewModel.thread.user
     });
   },
 

@@ -12,17 +12,17 @@ var ChatBoxView = React.createClass({
   },
 
   componentWillMount: function() {
-    this.rep = new ChatBoxViewModel(this.props.thread);
-    this.rep.on(this.rep.EventType.UPDATE, this.onUpdate);
+    this.viewModel = new ChatBoxViewModel(this.props.thread);
+    this.viewModel.on(this.viewModel.EventType.UPDATE, this.onUpdate);
 
     this.setState({
-      thread: this.rep.thread,
-      user: this.rep.user
+      thread: this.viewModel.thread,
+      user: this.viewModel.user
     })
   },
 
   componentWillUnmount: function() {
-    this.rep.off(this.rep.EventType.UPDATE, this.onUpdate);
+    this.viewModel.off(this.viewModel.EventType.UPDATE, this.onUpdate);
   },
 
   shouldComponentUpdate: function(nextProps, nextState) {
@@ -33,9 +33,9 @@ var ChatBoxView = React.createClass({
 
   onUpdate: function() {
     this.setState({
-      active: this.rep.getActive(),
-      unread: this.rep.thread.unread,
-      minimized: this.rep.minimized
+      active: this.viewModel.getActive(),
+      unread: this.viewModel.thread.unread,
+      minimized: this.viewModel.minimized
     })
   },
 
@@ -44,19 +44,19 @@ var ChatBoxView = React.createClass({
     if(this.state.minimized)
       this.toggle();
 
-    this.rep.setActive();
+    this.viewModel.setActive();
   },
 
   close: function(e) {
     e && e.stopPropagation();
-    this.rep.close();
+    this.viewModel.close();
   },
 
   toggle: function(e) {
     e && e.stopPropagation();
-    this.rep.minimize();
+    this.viewModel.minimize();
     this.setState({
-      minimized: this.rep.minimized
+      minimized: this.viewModel.minimized
     });
   },
 

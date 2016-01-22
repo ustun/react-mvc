@@ -9,22 +9,22 @@ var ThreadPreViewView = React.createClass({
   },
 
   componentWillMount: function() {
-    this.rep = new ThreadPreViewViewModel(this.props.thread);
-    this.rep.on(this.rep.EventType.SET_ACTIVE_THREAD, this.updateThread);
-    this.rep.on(this.rep.EventType.NEW_MESSAGE, this.updateThread);
-    this.rep.on(this.rep.EventType.SET_ACTIVE_CHAT_BOX, this.updateThread);
+    this.viewModel = new ThreadPreViewViewModel(this.props.thread);
+    this.viewModel.on(this.viewModel.EventType.SET_ACTIVE_THREAD, this.updateThread);
+    this.viewModel.on(this.viewModel.EventType.NEW_MESSAGE, this.updateThread);
+    this.viewModel.on(this.viewModel.EventType.SET_ACTIVE_CHAT_BOX, this.updateThread);
 
     this.setState({
-      active: this.rep.getActive(),
-      user: this.rep.user,
-      lastMessage: this.rep.lastMessage
+      active: this.viewModel.getActive(),
+      user: this.viewModel.user,
+      lastMessage: this.viewModel.lastMessage
     })
   },
 
   componentWillUnmount: function() {
-    this.rep.off(this.rep.EventType.SET_ACTIVE_THREAD, this.updateThread);
-    this.rep.off(this.rep.EventType.NEW_MESSAGE, this.updateThread);
-    this.rep.off(this.rep.EventType.SET_ACTIVE_CHAT_BOX, this.updateThread);
+    this.viewModel.off(this.viewModel.EventType.SET_ACTIVE_THREAD, this.updateThread);
+    this.viewModel.off(this.viewModel.EventType.NEW_MESSAGE, this.updateThread);
+    this.viewModel.off(this.viewModel.EventType.SET_ACTIVE_CHAT_BOX, this.updateThread);
   },
 
   shouldComponentUpdate: function(nextProps, nextState) {
@@ -33,14 +33,14 @@ var ThreadPreViewView = React.createClass({
   },
 
   setActive: function() {
-    this.props.onClickThreadPreView(this.rep.thread);
+    this.props.onClickThreadPreView(this.viewModel.thread);
   },
 
   updateThread: function() {
     this.setState({
-      active: this.rep.getActive(),
-      lastMessage: this.rep.lastMessage,
-      unread: this.rep.thread.unread
+      active: this.viewModel.getActive(),
+      lastMessage: this.viewModel.lastMessage,
+      unread: this.viewModel.thread.unread
     })
   },
 

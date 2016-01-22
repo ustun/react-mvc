@@ -12,18 +12,18 @@ var ThreadsPopoverView = React.createClass({
   },
 
   componentWillMount: function() {
-    this.rep = new ThreadsPopoverViewModel();
+    this.viewModel = new ThreadsPopoverViewModel();
   },
 
   toggle: function() {
-    this.rep.toggle();
+    this.viewModel.toggle();
     this.setState({
-      visible: this.rep.visible
+      visible: this.viewModel.visible
     })
   },
 
   onClickThreadPreView: function(thread) {
-    this.rep.addChatBox(thread);
+    this.viewModel.addChatBox(thread);
   },
 
   render: function() {

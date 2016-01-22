@@ -16,19 +16,19 @@ var ThreadsListView = React.createClass({
   },
 
   componentWillMount: function() {
-    this.rep = new ThreadListViewModel();
-    this.rep.on(this.rep.EventType.INITIAL_DATA, this.onInit);
-    this.rep.on(this.rep.EventType.NEW_MESSAGE, this.onNewMessage);
+    this.viewModel = new ThreadListViewModel();
+    this.viewModel.on(this.viewModel.EventType.INITIAL_DATA, this.onInit);
+    this.viewModel.on(this.viewModel.EventType.NEW_MESSAGE, this.onNewMessage);
   },
 
   componentWillUnmount: function() {
-    this.rep.off(this.rep.EventType.INITIAL_DATA, this.onInit);
-    this.rep.off(this.rep.EventType.NEW_MESSAGE, this.onNewMessage);
+    this.viewModel.off(this.viewModel.EventType.INITIAL_DATA, this.onInit);
+    this.viewModel.off(this.viewModel.EventType.NEW_MESSAGE, this.onNewMessage);
   },
 
   onInit: function() {
     this.setState({
-      threads: this.rep.threads
+      threads: this.viewModel.threads
     })
   },
 

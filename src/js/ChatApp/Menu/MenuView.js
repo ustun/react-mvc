@@ -11,17 +11,17 @@ var MenuView = React.createClass({
   },
 
   componentWillMount: function() {
-    this.rep = new MenuViewModel();
-    this.rep.on(this.rep.EventType.UPDATE, this.onUpdate);
+    this.viewModel = new MenuViewModel();
+    this.viewModel.on(this.viewModel.EventType.UPDATE, this.onUpdate);
   },
 
   componentWillUnmount: function() {
-    this.rep.off(this.rep.EventType.UPDATE, this.onUpdate);
+    this.viewModel.off(this.viewModel.EventType.UPDATE, this.onUpdate);
   },
 
   onUpdate: function() {
     this.setState({
-      count: this.rep.unreadCount
+      count: this.viewModel.unreadCount
     })
   },
 

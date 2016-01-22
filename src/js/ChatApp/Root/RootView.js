@@ -13,9 +13,9 @@ var RootView = React.createClass({
   },
 
   componentWillMount: function() {
-    this.rep = new RootViewModel();
-    this.rep.on(this.rep.EventType.ADD_CHAT_BOX, this.onAddChatBox);
-    this.rep.on(this.rep.EventType.REMOVE_CHAT_BOX, this.onRemoveChatBox);
+    this.viewModel = new RootViewModel();
+    this.viewModel.on(this.viewModel.EventType.ADD_CHAT_BOX, this.onAddChatBox);
+    this.viewModel.on(this.viewModel.EventType.REMOVE_CHAT_BOX, this.onRemoveChatBox);
   },
 
   onAddChatBox: function(e) {

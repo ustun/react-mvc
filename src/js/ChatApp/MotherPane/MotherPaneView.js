@@ -12,27 +12,27 @@ var MotherPaneView = React.createClass({
   },
 
   componentWillMount: function() {
-    this.rep = new MotherPaneViewModel();
-    this.rep.on(this.rep.EventType.UPDATE, this.onUpdate);
+    this.viewModel = new MotherPaneViewModel();
+    this.viewModel.on(this.viewModel.EventType.UPDATE, this.onUpdate);
   },
 
   componentWillUnmount: function() {
-    this.rep.off(this.rep.EventType.UPDATE, this.onUpdate);
+    this.viewModel.off(this.viewModel.EventType.UPDATE, this.onUpdate);
   },
 
   onUpdate: function() {
     this.setState({
-      threads: this.rep.getThreads()
+      threads: this.viewModel.getThreads()
     })
   },
 
   onClickThreadPreView: function(thread) {
-    this.rep.setActive(thread);
+    this.viewModel.setActive(thread);
   },
 
   render: function() {
 
-    var activeThread = this.rep.getActiveThread();
+    var activeThread = this.viewModel.getActiveThread();
     var chatPane = activeThread ? <ChatPane thread={activeThread}/> : '';
 
     return (
