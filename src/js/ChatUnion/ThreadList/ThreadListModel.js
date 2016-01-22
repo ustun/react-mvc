@@ -1,9 +1,9 @@
 var React = require('react'),
     ThreadListRep = require('./ThreadListRep'),
-    ThreadPreview = require('../ThreadPreview/ThreadPreviewCulture'),
-    ChatPane = require('../ChatPane/ChatPaneCulture');
+    ThreadPreview = require('../ThreadPreview/ThreadPreviewview'),
+    ChatPane = require('../ChatPane/ChatPaneview');
 
-var ThreadsListCulture = React.createClass({
+var ThreadsListview = React.createClass({
 
   propTypes: {
     onClickThreadPreview: React.PropTypes.func.isRequired
@@ -70,4 +70,4 @@ var ThreadsListCulture = React.createClass({
   }
 });
 
-module.exports = ThreadsListCulture;
+module.exports = ThreadsListview;

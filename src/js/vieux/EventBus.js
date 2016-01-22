@@ -1,10 +1,10 @@
 var EventEmitter = require('eventemitter3'),
     util = require('util');
 
-var Diplomat = function() {
+var eventManager = function() {
     EventEmitter.call(this);
 };
 
-util.inherits(Diplomat, EventEmitter);
+util.inherits(eventManager, EventEmitter);
 
-module.exports = Diplomat;
+module.exports = eventManager;

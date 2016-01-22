@@ -1,10 +1,10 @@
 var React = require('react'),
     RootRep = require('./RootRep'),
-    Menu = require('../Menu/MenuCulture'),
-    MotherPane = require('../MotherPane/MotherPaneCulture'),
-    ChatBoxCulture = require('../ChatBox/ChatBoxCulture');
+    Menu = require('../Menu/Menuview'),
+    MotherPane = require('../MotherPane/MotherPaneview'),
+    ChatBoxview = require('../ChatBox/ChatBoxview');
 
-var RootCulture = React.createClass({
+var Rootview = React.createClass({
 
   getInitialState: function() {
     return {
@@ -57,7 +57,7 @@ var RootCulture = React.createClass({
   render: function() {
 
     var chatBoxes = this.state.threads.map(function(thread) {
-      return <ChatBoxCulture ref={thread.id} key={thread.id} thread={thread} />
+      return <ChatBoxview ref={thread.id} key={thread.id} thread={thread} />
     });
 
     return (
@@ -70,4 +70,4 @@ var RootCulture = React.createClass({
   }
 });
 
-module.exports = RootCulture;
+module.exports = Rootview;

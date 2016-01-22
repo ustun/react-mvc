@@ -3,14 +3,14 @@
  *
  * @param {Object} user JSON object for a user
  */
-function UserStereotype(user) {
+function Userentity(user) {
   this.gender = user.gender;
   this.name = user.name;
   this.picture = user.picture;
 }
 
 
-UserStereotype.prototype.getFullName = function () {
+Userentity.prototype.getFullName = function () {
   return capitalize(this.name.first) + ' ' + capitalize(this.name.last);
 };
 
@@ -20,4 +20,4 @@ function capitalize(str) {
 }
 
 
-module.exports = UserStereotype;
+module.exports = Userentity;

@@ -1,12 +1,12 @@
 var util = require('util'),
-    Regime = require('../ReactMVC/Regime'),
-    ThreadUndertaker = require('./ThreadUndertaker'),
-    ThreadStereotype = require('./ThreadStereotype');
+    model = require('../ReactMVC/model'),
+    Threadservice = require('./Threadservice'),
+    Threadentity = require('./Threadentity');
 
-var ChatRegime = function() {
-  Regime.call(this);
+var Chatmodel = function() {
+  model.call(this);
 
-  this.undertaker = ThreadUndertaker;
+  this.service = Threadservice;
   this.threads = [];
   this.activeThread = null;
 
@@ -16,9 +16,9 @@ var ChatRegime = function() {
   this.owner = null;
 };
 
-util.inherits(ChatRegime, Regime);
+util.inherits(Chatmodel, model);
 
-ChatRegime.prototype.init = function() {
+Chatmodel.prototype.init = function() {
   this.getThreads_();
   this.getOwner_();
 };
@@ -28,23 +28,23 @@ ChatRegime.prototype.init = function() {
  *
  * @private
  */
-ChatRegime.prototype.getThreads_ = function() {
-  this.undertaker.getThreads(this.onInitialData.bind(this));
+Chatmodel.prototype.getThreads_ = function() {
+  this.service.getThreads(this.onInitialData.bind(this));
 };
 
-ChatRegime.prototype.setupUpdates_ = function() {
+Chatmodel.prototype.setupUpdates_ = function() {
   setTimeout(function() {
-    this.undertaker.getUpdates(this.onUpdate.bind(this));
+    this.service.getUpdates(this.onUpdate.bind(this));
   }.bind(this), 1000);
 };
 
-ChatRegime.prototype.onInitialData = function(err, data) {
+Chatmodel.prototype.onInitialData = function(err, data) {
 
   if(err)
     return;
 
   this.threads = data.threads.map(function(thread) {
-    return new ThreadStereotype(thread);
+    return new Threadentity(thread);
   });
 
   this.activeThread = this.threads[0];
@@ -56,14 +56,14 @@ ChatRegime.prototype.onInitialData = function(err, data) {
 };
 
 
-ChatRegime.prototype.getThreadById = function(id) {
+Chatmodel.prototype.getThreadById = function(id) {
   return this.threads.filter(function(thread) {
     return thread.id == id;
   })[0];
 };
 
 
-ChatRegime.prototype.onUpdate = function(err, data) {
+Chatmodel.prototype.onUpdate = function(err, data) {
   if(err || !data.length)
     return this.setupUpdates_();
 
@@ -96,7 +96,7 @@ ChatRegime.prototype.onUpdate = function(err, data) {
   this.setupUpdates_();
 };
 
-ChatRegime.prototype.setActiveChatBox = function(thread) {
+Chatmodel.prototype.setActiveChatBox = function(thread) {
   if(this.activeChatBox == thread)
     return;
 
@@ -108,7 +108,7 @@ ChatRegime.prototype.setActiveChatBox = function(thread) {
   this.emit(this.EventType.SET_ACTIVE_CHAT_BOX);
 };
 
-ChatRegime.prototype.addChatBox = function(thread) {
+Chatmodel.prototype.addChatBox = function(thread) {
   if(this.chatBoxes.indexOf(thread) == -1)
     this.chatBoxes.push(thread);
 
@@ -117,7 +117,7 @@ ChatRegime.prototype.addChatBox = function(thread) {
   this.emit(this.EventType.ADD_CHAT_BOX, {thread: thread});
 };
 
-ChatRegime.prototype.removeChatBox = function(thread) {
+Chatmodel.prototype.removeChatBox = function(thread) {
   var i = this.chatBoxes.indexOf(thread);
   if (i == -1)
     return;
@@ -128,13 +128,13 @@ ChatRegime.prototype.removeChatBox = function(thread) {
   this.emit(this.EventType.REMOVE_CHAT_BOX, {thread: thread});
 };
 
-ChatRegime.prototype.getUnreadCount = function() {
+Chatmodel.prototype.getUnreadCount = function() {
   return this.threads.filter(function(thread) {
     return thread.unread;
   }).length;
 };
 
-ChatRegime.prototype.setActive = function(thread) {
+Chatmodel.prototype.setActive = function(thread) {
   if(this.activeThread == thread)
     return;
 
@@ -144,13 +144,13 @@ ChatRegime.prototype.setActive = function(thread) {
   this.emit(this.EventType.SET_ACTIVE_THREAD);
 };
 
-ChatRegime.prototype.getOwner_ = function() {
-  this.undertaker.getOwner(function(err, owner) {
+Chatmodel.prototype.getOwner_ = function() {
+  this.service.getOwner(function(err, owner) {
     this.owner = owner;
   }.bind(this));
 };
 
-ChatRegime.prototype.EventType = {
+Chatmodel.prototype.EventType = {
   INITIAL_DATA: 'initial data',
   SET_ACTIVE_THREAD: 'set active thread',
   SET_ACTIVE_CHAT_BOX: 'set active chat box',
@@ -159,4 +159,4 @@ ChatRegime.prototype.EventType = {
   REMOVE_CHAT_BOX: 'remove chat box'
 };
 
-module.exports = new ChatRegime();
+module.exports = new Chatmodel();

@@ -1,9 +1,9 @@
 var React = require('react'),
     cx = require('classnames'),
     ThreadsPopoverRep = require('./ThreadsPopoverRep'),
-    ThreadList = require('../ThreadList/ThreadListCulture');
+    ThreadList = require('../ThreadList/ThreadListview');
 
-var ThreadsPopoverCulture = React.createClass({
+var ThreadsPopoverview = React.createClass({
 
   getInitialState: function() {
     return {
@@ -35,4 +35,4 @@ var ThreadsPopoverCulture = React.createClass({
   }
 });
 
-module.exports = ThreadsPopoverCulture;
+module.exports = ThreadsPopoverview;

@@ -1,5 +1,5 @@
 var Representative = require('../../ReactMVC/Representative'),
-    ChatRegime = require('../ChatRegime'),
+    Chatmodel = require('../Chatmodel'),
     util = require('util');
 
 var ThreadPreviewRep = function(thread) {
@@ -8,16 +8,16 @@ var ThreadPreviewRep = function(thread) {
   this.user = thread.user;
   this.lastMessage = thread.messages.slice(-1);
 
-  // TODO: This Culture should be a subculture and its Parent should listen this event instead
-  ChatRegime.on(ChatRegime.EventType.SET_ACTIVE_THREAD, this.onSetActiveThread.bind(this));
-  ChatRegime.on(ChatRegime.EventType.NEW_MESSAGE, this.onUpdate.bind(this));
-  ChatRegime.on(ChatRegime.EventType.SET_ACTIVE_CHAT_BOX, this.onSetActiveChatBox.bind(this));
+  // TODO: This view should be a subview and its Parent should listen this event instead
+  Chatmodel.on(Chatmodel.EventType.SET_ACTIVE_THREAD, this.onSetActiveThread.bind(this));
+  Chatmodel.on(Chatmodel.EventType.NEW_MESSAGE, this.onUpdate.bind(this));
+  Chatmodel.on(Chatmodel.EventType.SET_ACTIVE_CHAT_BOX, this.onSetActiveChatBox.bind(this));
 };
 
 util.inherits(ThreadPreviewRep, Representative);
 
 ThreadPreviewRep.prototype.getActive = function() {
-  return this.thread == ChatRegime.activeThread;
+  return this.thread == Chatmodel.activeThread;
 };
 
 ThreadPreviewRep.prototype.onUpdate = function(e) {

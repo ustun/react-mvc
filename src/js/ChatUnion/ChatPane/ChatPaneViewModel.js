@@ -1,15 +1,15 @@
 var util = require('util'),
     Representative = require('../../ReactMVC/Representative'),
-    ChatRegime = require('../ChatRegime');
+    Chatmodel = require('../Chatmodel');
 
 var ChatPaneRep = function(thread) {
   Representative.call(this);
 
   this.thread = thread;
   this.user = this.thread.user;
-  this.owner = ChatRegime.owner;
+  this.owner = Chatmodel.owner;
 
-  ChatRegime.on(ChatRegime.EventType.NEW_MESSAGE, this.onNewMessage.bind(this));
+  Chatmodel.on(Chatmodel.EventType.NEW_MESSAGE, this.onNewMessage.bind(this));
 };
 
 util.inherits(ChatPaneRep, Representative);

@@ -1,8 +1,8 @@
 var React = require('react'),
     MenuRep = require('./MenuRep'),
-    Popover = require('../ThreadsPopover/ThreadsPopoverCulture');
+    Popover = require('../ThreadsPopover/ThreadsPopoverview');
 
-var MenuCulture = React.createClass({
+var Menuview = React.createClass({
 
   getInitialState: function() {
     return {
@@ -45,4 +45,4 @@ var MenuCulture = React.createClass({
   }
 });
 
-module.exports = MenuCulture;
+module.exports = Menuview;

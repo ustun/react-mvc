@@ -1,10 +1,10 @@
 var EventEmitter = require('eventemitter3'),
     util = require('util');
 
-var Regime = function() {
+var model = function() {
     EventEmitter.call(this);
 };
 
-util.inherits(Regime, EventEmitter);
+util.inherits(model, EventEmitter);
 
-module.exports = Regime;
+module.exports = model;

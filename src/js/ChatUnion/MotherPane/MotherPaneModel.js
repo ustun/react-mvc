@@ -1,9 +1,9 @@
 var React = require('react'),
     MotherPaneRep = require('./MotherPaneRep'),
-    ThreadList = require('../ThreadList/ThreadListCulture'),
-    ChatPane = require('../ChatPane/ChatPaneCulture');
+    ThreadList = require('../ThreadList/ThreadListview'),
+    ChatPane = require('../ChatPane/ChatPaneview');
 
-var MotherPaneCulture = React.createClass({
+var MotherPaneview = React.createClass({
 
   getInitialState: function() {
     return {
@@ -44,4 +44,4 @@ var MotherPaneCulture = React.createClass({
   }
 });
 
-module.exports = MotherPaneCulture;
+module.exports = MotherPaneview;

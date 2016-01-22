@@ -1,18 +1,18 @@
 var Representative = require('../../ReactMVC/Representative'),
-    ChatRegime = require('../ChatRegime'),
+    Chatmodel = require('../Chatmodel'),
     util = require('util');
 
 var ThreadListRep = function() {
   Representative.call(this);
 
-  ChatRegime.on(ChatRegime.EventType.INITIAL_DATA, this.onInitialData.bind(this));
-  ChatRegime.on(ChatRegime.EventType.NEW_MESSAGE, this.onNewMessage.bind(this));
+  Chatmodel.on(Chatmodel.EventType.INITIAL_DATA, this.onInitialData.bind(this));
+  Chatmodel.on(Chatmodel.EventType.NEW_MESSAGE, this.onNewMessage.bind(this));
 };
 
 util.inherits(ThreadListRep, Representative);
 
 ThreadListRep.prototype.onInitialData = function() {
-  this.threads = ChatRegime.threads;
+  this.threads = Chatmodel.threads;
   this.emit(this.EventType.INITIAL_DATA);
 };
 

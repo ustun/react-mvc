@@ -2,7 +2,7 @@ var React = require('react'),
     cx = require('classnames'),
     ThreadPreviewRep = require('./ThreadPreviewRep');
 
-var ThreadPreviewCulture = React.createClass({
+var ThreadPreviewview = React.createClass({
 
   propTypes: {
     thread: React.PropTypes.object
@@ -62,4 +62,4 @@ var ThreadPreviewCulture = React.createClass({
   }
 });
 
-module.exports = ThreadPreviewCulture;
+module.exports = ThreadPreviewview;

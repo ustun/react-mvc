@@ -3,15 +3,15 @@ var db = require('../db');
 /**
  * @constructor
  */
-function ThreadUndertaker() {}
+function Threadservice() {}
 
-ThreadUndertaker.prototype.getThreads = function (cb) {
+Threadservice.prototype.getThreads = function (cb) {
   var dbCopy = JSON.parse(JSON.stringify(db.db));
 
   setTimeout(cb.bind(null, null, dbCopy), 300);
 };
 
-ThreadUndertaker.prototype.getUpdates = function (cb) {
+Threadservice.prototype.getUpdates = function (cb) {
   setTimeout(function () {
     var updatesCopy = JSON.parse(JSON.stringify(db.updates));
 
@@ -20,11 +20,11 @@ ThreadUndertaker.prototype.getUpdates = function (cb) {
   }, 100);
 };
 
-ThreadUndertaker.prototype.getOwner = function(cb) {
+Threadservice.prototype.getOwner = function(cb) {
   var ownerCopy = JSON.parse(JSON.stringify(db.owner));
 
   cb(null, ownerCopy);
 };
 
 
-module.exports = new ThreadUndertaker();
+module.exports = new Threadservice();

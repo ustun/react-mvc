@@ -1,13 +1,13 @@
 var util = require('util'),
     Representative = require('../../ReactMVC/Representative'),
-    ChatRegime = require('../ChatRegime');
+    Chatmodel = require('../Chatmodel');
 
 /**
  *
  * @constructor
  * @extends {Representative}
  *
- * @param {ThreadStereotype} thread ThreadStereotype instance
+ * @param {Threadentity} thread Threadentity instance
  */
 var ChatBoxRep = function(thread) {
   Representative.call(this);
@@ -16,32 +16,32 @@ var ChatBoxRep = function(thread) {
   this.user = this.thread.user;
   this.minimized = false;
 
-  ChatRegime.on(ChatRegime.EventType.NEW_MESSAGE, this.onUpdate.bind(this));
-  ChatRegime.on(ChatRegime.EventType.SET_ACTIVE_CHAT_BOX, this.onUpdate.bind(this));
+  Chatmodel.on(Chatmodel.EventType.NEW_MESSAGE, this.onUpdate.bind(this));
+  Chatmodel.on(Chatmodel.EventType.SET_ACTIVE_CHAT_BOX, this.onUpdate.bind(this));
 };
 
 util.inherits(ChatBoxRep, Representative);
 
 
 ChatBoxRep.prototype.setActive = function () {
-  ChatRegime.setActiveChatBox(this.thread);
+  Chatmodel.setActiveChatBox(this.thread);
 };
 
 
 ChatBoxRep.prototype.close = function () {
-  ChatRegime.removeChatBox(this.thread);
+  Chatmodel.removeChatBox(this.thread);
 };
 
 
 ChatBoxRep.prototype.minimize = function () {
   this.minimized = !this.minimized;
 
-  ChatRegime.setActiveChatBox(this.minimized ? null : this.thread);
+  Chatmodel.setActiveChatBox(this.minimized ? null : this.thread);
 };
 
 
 ChatBoxRep.prototype.getActive = function () {
-  return this.thread == ChatRegime.activeChatBox;
+  return this.thread == Chatmodel.activeChatBox;
 };
 
 
