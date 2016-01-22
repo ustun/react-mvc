@@ -1,6 +1,6 @@
 var React = require('react/addons'),
-    Root = require('./ChatUnion/Root/RootView'),
-    ChatModel = require('./ChatUnion/ChatModel');
+    Root = require('./ChatApp/Root/RootView'),
+    ChatModel = require('./ChatApp/ChatModel');
 
 // Debuging tools
 var debug = require('debug');
