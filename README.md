@@ -7,8 +7,8 @@ This project implements an example chat application with ReactMVC architecture. 
 ## Install
 
 ```
-$ git clone git@github.com:ReactMVCjs/example-chat-react.git
-$ cd example-chat-react
+$ git clone https://github.com/ustun/react-mvc.git
+$ cd react-mvc
 $ npm install
 ```
 
