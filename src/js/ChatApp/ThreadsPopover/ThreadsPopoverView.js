@@ -22,14 +22,14 @@ var ThreadsPopoverView = React.createClass({
     })
   },
 
-  onClickThreadPreView: function(thread) {
+  onClickThreadPreview: function(thread) {
     this.viewModel.addChatBox(thread);
   },
 
   render: function() {
     return (
         <div className={cx('threads-popover', {'visible': this.state.visible})}>
-          <ThreadList onClickThreadPreView={this.onClickThreadPreView}/>
+          <ThreadList onClickThreadPreview={this.onClickThreadPreview}/>
         </div>
     );
   }

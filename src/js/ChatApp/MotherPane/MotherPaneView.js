@@ -26,7 +26,7 @@ var MotherPaneView = React.createClass({
     })
   },
 
-  onClickThreadPreView: function(thread) {
+  onClickThreadPreview: function(thread) {
     this.viewModel.setActive(thread);
   },
 
@@ -37,7 +37,7 @@ var MotherPaneView = React.createClass({
 
     return (
         <div className="mother-pane">
-          <ThreadList onClickThreadPreView={this.onClickThreadPreView}/>
+          <ThreadList onClickThreadPreview={this.onClickThreadPreview}/>
           {chatPane}
         </div>
     );

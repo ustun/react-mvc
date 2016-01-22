@@ -2,7 +2,7 @@ var ViewModel = require('../../ReactMVC/ViewModel'),
     ChatModel = require('../ChatModel'),
     util = require('util');
 
-var ThreadPreViewViewModel = function(thread) {
+var ThreadPreviewViewModel = function(thread) {
   ViewModel.call(this);
   this.thread = thread;
   this.user = thread.user;
@@ -14,13 +14,13 @@ var ThreadPreViewViewModel = function(thread) {
   ChatModel.on(ChatModel.EventType.SET_ACTIVE_CHAT_BOX, this.onSetActiveChatBox.bind(this));
 };
 
-util.inherits(ThreadPreViewViewModel, ViewModel);
+util.inherits(ThreadPreviewViewModel, ViewModel);
 
-ThreadPreViewViewModel.prototype.getActive = function() {
+ThreadPreviewViewModel.prototype.getActive = function() {
   return this.thread == ChatModel.activeThread;
 };
 
-ThreadPreViewViewModel.prototype.onUpdate = function(e) {
+ThreadPreviewViewModel.prototype.onUpdate = function(e) {
   e.data.some(function(data) {
     if(data.thread.id != this.thread.id)
       return;
@@ -33,19 +33,19 @@ ThreadPreViewViewModel.prototype.onUpdate = function(e) {
   }, this);
 };
 
-ThreadPreViewViewModel.prototype.onSetActiveThread = function() {
+ThreadPreviewViewModel.prototype.onSetActiveThread = function() {
   this.emit(this.EventType.SET_ACTIVE_THREAD);
 };
 
-ThreadPreViewViewModel.prototype.onSetActiveChatBox = function() {
+ThreadPreviewViewModel.prototype.onSetActiveChatBox = function() {
   this.emit(this.EventType.SET_ACTIVE_CHAT_BOX);
 };
 
-ThreadPreViewViewModel.prototype.EventType = {
+ThreadPreviewViewModel.prototype.EventType = {
   SET_ACTIVE_THREAD: 'set active thread',
   NEW_MESSAGE: 'new message',
   SET_ACTIVE_CHAT_BOX: 'set active chat box'
 };
 
 
-module.exports = ThreadPreViewViewModel;
+module.exports = ThreadPreviewViewModel;

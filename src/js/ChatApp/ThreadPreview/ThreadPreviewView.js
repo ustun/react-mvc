@@ -1,15 +1,15 @@
 var React = require('react'),
     cx = require('classnames'),
-    ThreadPreViewViewModel = require('./ThreadPreViewViewModel');
+    ThreadPreviewViewModel = require('./ThreadPreviewViewModel');
 
-var ThreadPreViewView = React.createClass({
+var ThreadPreviewView = React.createClass({
 
   propTypes: {
     thread: React.PropTypes.object
   },
 
   componentWillMount: function() {
-    this.viewModel = new ThreadPreViewViewModel(this.props.thread);
+    this.viewModel = new ThreadPreviewViewModel(this.props.thread);
     this.viewModel.on(this.viewModel.EventType.SET_ACTIVE_THREAD, this.updateThread);
     this.viewModel.on(this.viewModel.EventType.NEW_MESSAGE, this.updateThread);
     this.viewModel.on(this.viewModel.EventType.SET_ACTIVE_CHAT_BOX, this.updateThread);
@@ -33,7 +33,7 @@ var ThreadPreViewView = React.createClass({
   },
 
   setActive: function() {
-    this.props.onClickThreadPreView(this.viewModel.thread);
+    this.props.onClickThreadPreview(this.viewModel.thread);
   },
 
   updateThread: function() {
@@ -62,4 +62,4 @@ var ThreadPreViewView = React.createClass({
   }
 });
 
-module.exports = ThreadPreViewView;
+module.exports = ThreadPreviewView;
