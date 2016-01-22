@@ -1,5 +1,5 @@
 var util = require('util'),
-    Representative = require('../../vieux/Representative'),
+    Representative = require('../../ReactMVC/Representative'),
     ChatRegime = require('../ChatRegime');
 
 /**

@@ -1,13 +1,13 @@
-# Vieux example with ReactJS
+# ReactMVC example with ReactJS
 
-This project implements an example chat application with Vieux architecture. It demonstrates how a complex, stateful application should be built.
+This project implements an example chat application with ReactMVC architecture. It demonstrates how a complex, stateful application should be built.
 
 ![demo](https://cloud.githubusercontent.com/assets/698308/9188378/41976688-3fe4-11e5-940d-e555f666b294.gif)
 
 ## Install
 
 ```
-$ git clone git@github.com:vieuxjs/example-chat-react.git
+$ git clone git@github.com:ReactMVCjs/example-chat-react.git
 $ cd example-chat-react
 $ npm install
 ```

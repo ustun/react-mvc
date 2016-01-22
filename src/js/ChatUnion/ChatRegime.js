@@ -1,5 +1,5 @@
 var util = require('util'),
-    Regime = require('../vieux/Regime'),
+    Regime = require('../ReactMVC/Regime'),
     ThreadUndertaker = require('./ThreadUndertaker'),
     ThreadStereotype = require('./ThreadStereotype');
 

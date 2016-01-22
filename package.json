@@ -1,14 +1,14 @@
 {
   "name": "example-chat-react",
   "version": "1.0.0",
-  "description": "Vieux Chat App with React",
+  "description": "ReactMVC Chat App with React",
   "scripts": {
     "start": "gulp --type devlopment",
     "build": "gulp build",
     "production": "gulp build --type production"
   },
   "keywords": [
-    "vieux",
+    "ReactMVC",
     "react"
   ],
   "author": "Tarik Akyol",
