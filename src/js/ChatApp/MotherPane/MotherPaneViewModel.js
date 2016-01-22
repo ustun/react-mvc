@@ -1,15 +1,15 @@
 var util = require('util'),
-    ViewModelresentative = require('../../ReactMVC/ViewModelresentative'),
+    ViewModel = require('../../ReactMVC/ViewModel'),
     ChatModel = require('../ChatModel');
 
 var MotherPaneViewModel = function() {
-  ViewModelresentative.call(this);
+  ViewModel.call(this);
 
   ChatModel.on(ChatModel.EventType.INITIAL_DATA, this.onUpdate.bind(this));
   ChatModel.on(ChatModel.EventType.SET_ACTIVE_THREAD, this.onUpdate.bind(this));
 };
 
-util.inherits(MotherPaneViewModel, ViewModelresentative);
+util.inherits(MotherPaneViewModel, ViewModel);
 
 MotherPaneViewModel.prototype.getThreads = function() {
   return ChatModel.threads;

@@ -1,14 +1,14 @@
-var ViewModelresentative = require('../../ReactMVC/ViewModelresentative'),
+var ViewModel = require('../../ReactMVC/ViewModel'),
     util = require('util'),
     ChatModel = require('../ChatModel');
 
 var ThreadsPopoverViewModel = function() {
-  ViewModelresentative.call(this);
+  ViewModel.call(this);
 
   this.visible = false;
 };
 
-util.inherits(ThreadsPopoverViewModel, ViewModelresentative);
+util.inherits(ThreadsPopoverViewModel, ViewModel);
 
 ThreadsPopoverViewModel.prototype.toggle = function() {
   this.visible = !this.visible;

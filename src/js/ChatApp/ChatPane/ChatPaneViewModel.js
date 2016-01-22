@@ -1,9 +1,9 @@
 var util = require('util'),
-    ViewModelresentative = require('../../ReactMVC/ViewModelresentative'),
+    ViewModel = require('../../ReactMVC/ViewModel'),
     ChatModel = require('../ChatModel');
 
 var ChatPaneViewModel = function(thread) {
-  ViewModelresentative.call(this);
+  ViewModel.call(this);
 
   this.thread = thread;
   this.user = this.thread.user;
@@ -12,7 +12,7 @@ var ChatPaneViewModel = function(thread) {
   ChatModel.on(ChatModel.EventType.NEW_MESSAGE, this.onNewMessage.bind(this));
 };
 
-util.inherits(ChatPaneViewModel, ViewModelresentative);
+util.inherits(ChatPaneViewModel, ViewModel);
 
 ChatPaneViewModel.prototype.onNewMessage = function(e) {
   e.data.some(function(data) {

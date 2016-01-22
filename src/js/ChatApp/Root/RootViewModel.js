@@ -1,16 +1,16 @@
 var util = require('util'),
-    ViewModelresentative = require('../../ReactMVC/ViewModelresentative'),
+    ViewModel = require('../../ReactMVC/ViewModel'),
     ChatModel = require('../ChatModel');
 
 
 var RootViewModel = function() {
-  ViewModelresentative.call(this);
+  ViewModel.call(this);
 
   ChatModel.on(ChatModel.EventType.ADD_CHAT_BOX, this.onAddChatbox.bind(this));
   ChatModel.on(ChatModel.EventType.REMOVE_CHAT_BOX, this.onRemoveChatbox.bind(this));
 };
 
-util.inherits(RootViewModel, ViewModelresentative);
+util.inherits(RootViewModel, ViewModel);
 
 RootViewModel.prototype.onAddChatbox = function(e) {
   this.emit(this.EventType.ADD_CHAT_BOX, e);

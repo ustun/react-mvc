@@ -1,10 +1,10 @@
 var EventEmitter = require('eventemitter3'),
     util = require('util');
 
-var ViewModelresentative = function() {
+var ViewModel = function() {
   EventEmitter.call(this);
 };
 
-util.inherits(ViewModelresentative, EventEmitter);
+util.inherits(ViewModel, EventEmitter);
 
-module.exports = ViewModelresentative;
+module.exports = ViewModel;

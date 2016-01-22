@@ -1,9 +1,9 @@
-var ViewModelresentative = require('../../ReactMVC/ViewModelresentative'),
+var ViewModel = require('../../ReactMVC/ViewModel'),
     ChatModel = require('../ChatModel'),
     util = require('util');
 
 var ThreadPreViewViewModel = function(thread) {
-  ViewModelresentative.call(this);
+  ViewModel.call(this);
   this.thread = thread;
   this.user = thread.user;
   this.lastMessage = thread.messages.slice(-1);
@@ -14,7 +14,7 @@ var ThreadPreViewViewModel = function(thread) {
   ChatModel.on(ChatModel.EventType.SET_ACTIVE_CHAT_BOX, this.onSetActiveChatBox.bind(this));
 };
 
-util.inherits(ThreadPreViewViewModel, ViewModelresentative);
+util.inherits(ThreadPreViewViewModel, ViewModel);
 
 ThreadPreViewViewModel.prototype.getActive = function() {
   return this.thread == ChatModel.activeThread;

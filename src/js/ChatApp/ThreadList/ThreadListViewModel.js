@@ -1,15 +1,15 @@
-var ViewModelresentative = require('../../ReactMVC/ViewModelresentative'),
+var ViewModel = require('../../ReactMVC/ViewModel'),
     ChatModel = require('../ChatModel'),
     util = require('util');
 
 var ThreadListViewModel = function() {
-  ViewModelresentative.call(this);
+  ViewModel.call(this);
 
   ChatModel.on(ChatModel.EventType.INITIAL_DATA, this.onInitialData.bind(this));
   ChatModel.on(ChatModel.EventType.NEW_MESSAGE, this.onNewMessage.bind(this));
 };
 
-util.inherits(ThreadListViewModel, ViewModelresentative);
+util.inherits(ThreadListViewModel, ViewModel);
 
 ThreadListViewModel.prototype.onInitialData = function() {
   this.threads = ChatModel.threads;

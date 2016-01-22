@@ -1,9 +1,9 @@
-var ViewModelresentative = require('../../ReactMVC/ViewModelresentative'),
+var ViewModel = require('../../ReactMVC/ViewModel'),
     ChatModel = require('../ChatModel'),
     util = require('util');
 
 var MenuViewModel = function() {
-  ViewModelresentative.call(this);
+  ViewModel.call(this);
   this.unreadCount = ChatModel.getUnreadCount();
 
   ChatModel.on(ChatModel.EventType.NEW_MESSAGE, this.onUpdate.bind(this));
@@ -11,7 +11,7 @@ var MenuViewModel = function() {
   ChatModel.on(ChatModel.EventType.SET_ACTIVE_CHAT_BOX, this.onUpdate.bind(this));
 };
 
-util.inherits(MenuViewModel, ViewModelresentative);
+util.inherits(MenuViewModel, ViewModel);
 
 
 MenuViewModel.prototype.onUpdate = function() {
