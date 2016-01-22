@@ -41,6 +41,8 @@ Happy coding!
 
 All the code was originally written in "Vieux" MVC architecture by [Tarik Akyol](https://github.com/tarikakyol).
 
+The original repo is at https://github.com/vieuxio/example-chat-react
+
 Converted to standard MVC naming by [Ustun Ozgur](https://github.com/ustun).
 
 For the original info about vieux architecture, see http://vieux.io/
