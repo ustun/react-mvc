@@ -1,4 +1,12 @@
+# React + MVC
+
+> “What is going on here? You’re sitting on a gold mine! Why aren’t you doing something with this technology? You could change the world!”
+  Steve Jobs, on his visit to Xerox Park
+
 # ReactMVC example with ReactJS
+
+MVC, invented at Xerox Park is the time and battle-tested pattern for building user interfaces. This project aims to show how the MVC pattern can be used with Facebook's React easily, without resorting to alternative tech like Flux or Redux.
+
 
 This project implements an example chat application with ReactMVC architecture. It demonstrates how a complex, stateful application should be built.
 
