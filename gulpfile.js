@@ -38,9 +38,9 @@ var configs = {
         'reactify'
       ]
     },
-    src: src + '/js/App.js',
+    src: src + '/js/app.js',
     dest: dest + '/js',
-    outputName: 'App.js'
+    outputName: 'app.js'
   },
   copy: {
     images: {
